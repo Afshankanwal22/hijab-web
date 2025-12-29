@@ -8,12 +8,107 @@
   <script src="https://cdn.tailwindcss.com"></script>
    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <style>
+    body {
+      font-family: 'Playfair Display', serif;
+    }
+      .font-playfair { font-family: 'Playfair Display', serif; }
+    .font-poppins { font-family: 'Poppins', sans-serif; }
+      /* Header Breadcrumb */
+        .faq-header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background-color: #fbeae8;
+        }
+
+        .faq-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            margin: 10px 0;
+        }
+
+        .faq-header .breadcrumb {
+            color: #f4a7a0;
+            font-weight: 500;
+        }
+
+        .faq-header .breadcrumb span {
+            margin: 0 5px;
+        }
+
+        /* FAQ Content Section */
+        .faq-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq-text {
+            flex: 1 1 400px;
+            padding: 60px 40px;
+            background-color: #6d6677;
+            color: #fff;
+            box-sizing: border-box;
+        }
+
+        .faq-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #fbeae8;
+        }
+
+        .faq-text p {
+            line-height: 1.8;
+            color: #e0dce3;
+            margin-bottom: 30px;
+        }
+
+        .faq-text button {
+            padding: 15px 30px;
+            background-color: #f4a7a0;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .faq-text button:hover {
+            background-color: #e08685;
+        }
+
+        .faq-image {
+            flex: 1 1 400px;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .faq-image img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 900px) {
+            .faq-content {
+                flex-direction: column-reverse;
+            }
+
+            .faq-text, .faq-image {
+                padding: 40px 20px;
+            }
+        }
+
+  </style>
 </head>
 <body>
 
-
-  
-    <!-- TOP BAR -->
+  <!-- TOP BAR -->
 <div class="bg-[#e9a1a3] text-white text-sm">
   <div class="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
     
@@ -70,7 +165,7 @@
     </button>
   </div>
 
-  <!-- NAVBAR -->
+ <!-- NAVBAR -->
 <nav class="hidden lg:block border-t bg-[#f6efed]">
   <ul class="max-w-7xl mx-auto px-6 py-4 flex gap-8 font-poppins text-sm font-medium">
 
@@ -122,120 +217,148 @@
   </div>
 </header>
 
+
+    <!-- Header -->
+    <section class="faq-header">
+        <p>FAQ</p>
+        <h1>FAQ</h1>
+        <p class="breadcrumb">Home <span>›</span> FAQ</p>
+    </section>
+
+    <!-- FAQ Content -->
+    <section class="faq-content">
+        <div class="faq-text">
+            <p>FAQ</p>
+            <h2>Ask Questions</h2>
+            <p>Lorem ipsum dolor sit amet consectetur. Montes quisque urna molestie tincidunt aliquet quam. Imperdiet at 
+            pellent esque vitae aliquet tempor eget rutrum tellus. Leo a luctus vitae.</p>
+            <button>Send Us Message</button>
+        </div>
+        <div class="faq-image">
+            <img src="https://i.ibb.co/4mD8wpr/hijab-model.png" alt="Hijab Model">
+        </div>
+    </section>
+
+
+<section class="max-w-4xl mx-auto px-6 py-20">
+  
+  <!-- Heading -->
+  <h2 class="text-4xl font-playfair text-center mb-12">General</h2>
+
+  <!-- FAQ -->
+  <div class="space-y-6">
+
+    <!-- ITEM -->
+    <div class="faq-item ">
+      <button onclick="toggleFaq(0)" class="w-full flex justify-between items-center text-left">
+        <span class="font-poppins font-semibold">
+          What types of hijabs do you offer in your store?
+        </span>
+        <span class="text-2xl faq-icon">+</span>
+      </button>
+
+      <div class="faq-content hidden mt-4 text-gray-600 font-poppins">
+        Our store offers a wide range of hijabs, including classic styles,
+        everyday wear, trendy options, and exclusive designs for special occasions.
+      </div>
+    </div>
+
+    <!-- ITEM (OPEN BY DEFAULT like screenshot) -->
+    <div class="faq-item ">
+      <button onclick="toggleFaq(1)" class="w-full flex justify-between items-center text-left text-pink-400">
+        <span class="font-poppins font-semibold">
+          Are your hijabs available in different sizes?
+        </span>
+        <span class="text-2xl faq-icon">−</span>
+      </button>
+
+      <div class="faq-content mt-4 text-gray-600 font-poppins">
+        Our store offers a wide range of hijabs, including classic styles,
+        everyday wear, trendy options, and even exclusive designs for special occasions.
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item">
+      <button onclick="toggleFaq(2)" class="w-full flex justify-between items-center text-left">
+        <span class="font-poppins font-semibold">
+          How do I care for and maintain the quality of my hijabs?
+        </span>
+        <span class="text-2xl faq-icon">+</span>
+      </button>
+      <div class="faq-content hidden mt-4 text-gray-600 font-poppins">
+        We recommend gentle hand washing or delicate machine wash with cold water.
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item ">
+      <button onclick="toggleFaq(3)" class="w-full flex justify-between items-center text-left">
+        <span class="font-poppins font-semibold">
+          Can I exchange or return a hijab if I'm not satisfied?
+        </span>
+        <span class="text-2xl faq-icon">+</span>
+      </button>
+      <div class="faq-content hidden mt-4 text-gray-600 font-poppins">
+        Yes, we offer easy returns and exchanges within our policy period.
+      </div>
+    </div>
+    <!-- ITEM -->
+    <div class="faq-item ">
+      <button onclick="toggleFaq(3)" class="w-full flex justify-between items-center text-left">
+        <span class="font-poppins font-semibold">
+         Do you offer hijab styling tips or tutorials?
+        </span>
+        <span class="text-2xl faq-icon">+</span>
+      </button>
+      <div class="faq-content hidden mt-4 text-gray-600 font-poppins">
+       Our store offers a wide range of hijabs, including classic styles, everyday wear, trendy options, and even exclusive designs for special occasions.
+      </div>
+    </div>
+
+     <!-- ITEM -->
+    <div class="faq-item ">
+      <button onclick="toggleFaq(3)" class="w-full flex justify-between items-center text-left">
+        <span class="font-poppins font-semibold">
+       Are your hijabs made from sustainable materials?
+        </span>
+        <span class="text-2xl faq-icon">+</span>
+      </button>
+      <div class="faq-content hidden mt-4 text-gray-600 font-poppins">
+       Our store offers a wide range of hijabs, including classic styles, everyday wear, trendy options, and even exclusive designs for special occasions.
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item ">
+      <button onclick="toggleFaq(3)" class="w-full flex justify-between items-center text-left">
+        <span class="font-poppins font-semibold">
+      How can I stay updated on new hijab collections and promotions?
+        </span>
+        <span class="text-2xl faq-icon">+</span>
+      </button>
+      <div class="faq-content hidden mt-4 text-gray-600 font-poppins">
+       Our store offers a wide range of hijabs, including classic styles, everyday wear, trendy options, and even exclusive designs for special occasions.
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item ">
+      <button onclick="toggleFaq(3)" class="w-full flex justify-between items-center text-left">
+        <span class="font-poppins font-semibold">
+         Can I customize hijabs for a special event or occasion?
+        </span>
+        <span class="text-2xl faq-icon">+</span>
+      </button>
+      <div class="faq-content hidden mt-4 text-gray-600 font-poppins">
+       Our store offers a wide range of hijabs, including classic styles, everyday wear, trendy options, and even exclusive designs for special occasions.
+      </div>
+    </div>
+
+  </div>
+</section>
+
     
-<section class="py-24 bg-white">
-  <div class="max-w-7xl mx-auto px-6 text-center">
-    <h2 class="text-4xl md:text-5xl font-serif font-semibold mb-12 text-gray-900">
-      Our Pricing Plans
-    </h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-      <!-- Basic Plan -->
-      <div class="border border-pink-200 rounded-xl p-8 flex flex-col items-center text-gray-800">
-        <h3 class="text-xl font-semibold mb-4">Basic</h3>
-        <p class="text-4xl font-bold mb-4">$9.99 <span class="text-sm font-normal">/ month</span></p>
-        <div class="border-b border-pink-200 w-full mb-4"></div>
-        <ul class="space-y-2 mb-6 text-left w-full">
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Classic, Everyday</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Standard</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Limited</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Discounts on Accessories 10%</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Hijab Styling Workshops</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Shipping Discounts</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Priority Customer Support</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Cancel Anytime</li>
-        </ul>
-        <button class="w-full border border-pink-300 text-pink-300 rounded-full py-3 mt-auto hover:bg-pink-400 hover:text-white transition font-semibold">
-          SELECT PLAN
-        </button>
-      </div>
-
-      <!-- Standard Plan (Highlighted) -->
-      <div class="bg-pink-200 rounded-xl p-8 flex flex-col items-center text-white">
-        <h3 class="text-xl font-semibold mb-4">Standard</h3>
-        <p class="text-4xl font-bold mb-4">$19.99 <span class="text-sm font-normal">/ month</span></p>
-        <div class="border-b border-pink-300 w-full mb-4"></div>
-        <ul class="space-y-2 mb-6 text-left w-full">
-          <li class="flex items-center gap-2"><span class="text-white">✔</span> Classic, Everyday</li>
-          <li class="flex items-center gap-2"><span class="text-white">✔</span> Standard</li>
-          <li class="flex items-center gap-2"><span class="text-white">✔</span> Limited</li>
-          <li class="flex items-center gap-2"><span class="text-white">✔</span> Discounts on Accessories 10%</li>
-          <li class="flex items-center gap-2"><span class="text-white">✔</span> Hijab Styling Workshops</li>
-          <li class="flex items-center gap-2"><span class="text-white">✔</span> Shipping Discounts</li>
-          <li class="flex items-center gap-2"><span class="text-white">✔</span> Priority Customer Support</li>
-          <li class="flex items-center gap-2"><span class="text-white">✔</span> Cancel Anytime</li>
-        </ul>
-        <button class="w-full bg-black text-white rounded-full py-3 mt-auto hover:bg-gray-800 transition font-semibold">
-          SELECT PLAN
-        </button>
-      </div>
-
-      <!-- Premium Plan -->
-      <div class="border border-pink-200 rounded-xl p-8 flex flex-col items-center text-gray-800">
-        <h3 class="text-xl font-semibold mb-4">Premium</h3>
-        <p class="text-4xl font-bold mb-4">$29.99 <span class="text-sm font-normal">/ month</span></p>
-        <div class="border-b border-pink-200 w-full mb-4"></div>
-        <ul class="space-y-2 mb-6 text-left w-full">
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Classic, Everyday</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Standard</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Limited</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Discounts on Accessories 10%</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Hijab Styling Workshops</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Shipping Discounts</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Priority Customer Support</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Cancel Anytime</li>
-        </ul>
-        <button class="w-full border border-pink-300 text-pink-300 rounded-full py-3 mt-auto hover:bg-pink-400 hover:text-white transition font-semibold">
-          SELECT PLAN
-        </button>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-<!-- SECTION -->
-<section class="flex flex-col lg:flex-row min-h-screen">
-
-  <!-- LEFT CONTENT -->
-  <div class="w-full lg:w-1/2 bg-black text-white flex items-center">
-    <div class="px-8 md:px-16 lg:px-20 py-16">
-
-      <span class="text-[#e05a47] text-xs tracking-[3px] uppercase block mb-5">
-        IS YOUR CHOICE
-      </span>
-
-      <h1 class="font-playfair text-4xl md:text-5xl xl:text-[52px] leading-tight mb-6">
-        See Which is the <br>
-        Best Price Plan <br>
-        for You
-      </h1>
-
-      <p class="text-gray-300 text-sm md:text-base leading-relaxed max-w-md">
-        Lorem ipsum dolor sit amet consectetur. Montes quisque
-        urna molestie tincidunt aliquet quam. Imperdiet at
-        pellentesque vitae aliquet tempor eget rutrum tellus.
-        Leo a luctus vitae pellentesque vitae aliquet tempor eget rutrum.
-      </p>
-
-    </div>
-  </div>
-
-  <!-- RIGHT IMAGE -->
-  <div class="w-full lg:w-1/2">
-    <img 
-      src="image.jpg" 
-      alt="Hijab Model"
-      class="w-full h-full object-cover"
-    >
-  </div>
-
-</section>
-
-
 
 
 
@@ -336,6 +459,35 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="app.js"></script>
+<script>
+     function toggleFaq(index) {
+    const items = document.querySelectorAll(".faq-item");
+
+    items.forEach((item, i) => {
+      const content = item.querySelector(".faq-content");
+      const icon = item.querySelector(".faq-icon");
+      const button = item.querySelector("button");
+
+      if (i === index) {
+        const isOpen = !content.classList.contains("hidden");
+
+        // close all first
+        items.forEach(el => {
+          el.querySelector(".faq-content").classList.add("hidden");
+          el.querySelector(".faq-icon").textContent = "+";
+          el.querySelector("button").classList.remove("text-pink-400");
+        });
+
+        // toggle current
+        if (!isOpen) {
+          content.classList.remove("hidden");
+          icon.textContent = "−";
+          button.classList.add("text-pink-400");
+        }
+      }
+    });
+  }
+</script>
 
 </body>
 </html>

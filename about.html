@@ -76,36 +76,131 @@
     </button>
   </div>
 
-  <!-- NAVBAR -->
-  <nav class="hidden lg:block border-t bg-[#f6efed]">
-    <ul class="max-w-7xl mx-auto px-6 py-4 flex gap-8 font-poppins text-sm font-medium">
-      <li>HOME</li>
-      <li>ABOUT</li>
-      <li class="flex items-center gap-1">SHOP <i class="fa-solid fa-chevron-down text-xs"></i></li>
-      <li>PRICING</li>
-      <li class="flex items-center gap-1">PAGES <i class="fa-solid fa-chevron-down text-xs"></i></li>
-      <li class="text-[#e9a1a3] flex items-center gap-1">BLOG <i class="fa-solid fa-chevron-down text-xs"></i></li>
-      <li>OUR TEAM</li>
-      <li>TESTIMONIALS</li>
-      <li>FAQ</li>
-      <li>CONTACT</li>
-    </ul>
-  </nav>
+   <!-- NAVBAR -->
+<nav class="hidden lg:block border-t bg-[#f6efed]">
+  <ul class="max-w-7xl mx-auto px-6 py-4 flex gap-8 font-poppins text-sm font-medium">
+
+    <li><a href="/home.html" class="hover:text-[#e9a1a3]">HOME</a></li>
+
+    <li><a href="/about.html" class="hover:text-[#e9a1a3]">ABOUT</a></li>
+
+    <li class="flex items-center gap-1 cursor-pointer hover:text-[#e9a1a3]">
+      <a href="/shop.html">SHOP</a>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </li>
+
+    <li><a href="/pricing.html" class="hover:text-[#e9a1a3]">PRICING</a></li>
+
+    <li class="flex items-center gap-1 cursor-pointer hover:text-[#e9a1a3]">
+      <a href="/pages.html">PAGES</a>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </li>
+
+    <li class="text-[#e9a1a3] flex items-center gap-1">
+      <a href="/blog.html">BLOG</a>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </li>
+
+    <li><a href="/team.html" class="hover:text-[#e9a1a3]">OUR TEAM</a></li>
+
+    <li><a href="/testimonials.html" class="hover:text-[#e9a1a3]">TESTIMONIALS</a></li>
+
+    <li><a href="/FAQ.html" class="hover:text-[#e9a1a3]">FAQ</a></li>
+
+    <li><a href="/contact.html" class="hover:text-[#e9a1a3]">CONTACT</a></li>
+
+  </ul>
+</nav>
 
   <!-- MOBILE MENU -->
   <div id="mobileMenu" class="hidden lg:hidden bg-[#f6efed] border-t">
-    <ul class="flex flex-col gap-4 px-6 py-6 font-poppins text-sm">
-      <li>HOME</li>
-      <li>ABOUT</li>
-      <li>SHOP</li>
-      <li>PRICING</li>
-      <li>PAGES</li>
-      <li class="text-[#e9a1a3]">BLOG</li>
-      <li>OUR TEAM</li>
-      <li>CONTACT</li>
-    </ul>
+   <ul class="max-w-7xl mx-auto px-6 py-4 flex gap-8 font-poppins text-sm font-medium">
+
+    <li><a href="/home.html" class="hover:text-[#e9a1a3]">HOME</a></li>
+
+    <li><a href="/about.html" class="hover:text-[#e9a1a3]">ABOUT</a></li>
+
+    <li class="flex items-center gap-1 cursor-pointer hover:text-[#e9a1a3]">
+      <a href="/shop.html">SHOP</a>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </li>
+
+    <li><a href="/pricing.html" class="hover:text-[#e9a1a3]">PRICING</a></li>
+
+    <li class="flex items-center gap-1 cursor-pointer hover:text-[#e9a1a3]">
+      <a href="/pages.html">PAGES</a>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </li>
+
+    <li class="text-[#e9a1a3] flex items-center gap-1">
+      <a href="/blog.html">BLOG</a>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </li>
+
+    <li><a href="/team.html" class="hover:text-[#e9a1a3]">OUR TEAM</a></li>
+
+    <li><a href="/testimonials.html" class="hover:text-[#e9a1a3]">TESTIMONIALS</a></li>
+
+    <li><a href="/FAQ.html" class="hover:text-[#e9a1a3]">FAQ</a></li>
+
+    <li><a href="/contact.html" class="hover:text-[#e9a1a3]">CONTACT</a></li>
+
+  </ul>
   </div>
 </header>
+
+
+ <!-- Heading -->
+  <div class="text-center py-12 px-4">
+    <p class="text-pink-300 uppercase tracking-widest mb-2 text-sm">Categories</p>
+    <h2 class="text-4xl font-serif mb-4">Shop by Categories</h2>
+    <p class="text-gray-600 max-w-xl mx-auto">
+      Lorem ipsum dolor sit amet consec contes quisque urna molestie tincidunt aliquet quam. 
+      Imperdiet at pellent esque vitae aliquet tempor eget rutrum tellus.
+    </p>
+  </div>
+
+  <!-- Cards Container -->
+  <div class="flex flex-wrap justify-center gap-6 px-4 pb-12">
+
+    <!-- Card 1 -->
+    <div class="relative w-72 h-96 rounded-lg overflow-hidden group">
+      <img src="https://templatekits.themewarrior.com/jamila/wp-content/uploads/sites/99/2024/02/card-category1.jpg" alt="Weekly Drop" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+      <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-6">
+        <h3 class="text-white text-xl font-serif mb-2">The Weekly Drop</h3>
+        <p class="text-gray-200 text-sm mb-4">Lorem ipsum dolor sit amet consec Montes quisque urna molestie tincidunt aliquet quam</p>
+        <button class="bg-[#e5989b] text-white font-semibold py-2 px-4 rounded-full hover:bg-pink-400 transition-colors">
+          The Weekly Drop
+        </button>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="relative w-72 h-96 rounded-lg overflow-hidden group">
+      <img src="https://templatekits.themewarrior.com/jamila/wp-content/uploads/sites/99/2024/02/card-category2.jpg" alt="Shop By Color" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+      <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-6">
+        <h3 class="text-white text-xl font-serif mb-2">Shop By Color</h3>
+        <p class="text-gray-200 text-sm mb-4">Lorem ipsum dolor sit amet consec Montes quisque urna molestie tincidunt aliquet quam</p>
+        <button class="bg-[#e5989b] text-white font-semibold py-2 px-4 rounded-full hover:bg-pink-400 transition-colors">
+          The Weekly Drop
+        </button>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="relative w-72 h-96 rounded-lg overflow-hidden group">
+      <img src="https://templatekits.themewarrior.com/jamila/wp-content/uploads/sites/99/2024/02/card-category2-1.jpg" alt="New to Hijab" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+      <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-6">
+        <h3 class="text-white text-xl font-serif mb-2">New to Hijab?</h3>
+        <p class="text-gray-200 text-sm mb-4">Lorem ipsum dolor sit amet consec Montes quisque urna molestie tincidunt aliquet quam</p>
+        <button class="bg-[#e5989b] text-white font-semibold py-2 px-4 rounded-full hover:bg-pink-400 transition-colors">
+          The Weekly Drop
+        </button>
+      </div>
+    </div>
+
+  </div>
+
 
 
 

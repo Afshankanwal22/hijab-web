@@ -8,12 +8,18 @@
   <script src="https://cdn.tailwindcss.com"></script>
    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <style>
+    body {
+      font-family: 'Playfair Display', serif;
+    }
+      .font-playfair { font-family: 'Playfair Display', serif; }
+    .font-poppins { font-family: 'Poppins', sans-serif; }
+
+  </style>
 </head>
 <body>
 
-
-  
-    <!-- TOP BAR -->
+  <!-- TOP BAR -->
 <div class="bg-[#e9a1a3] text-white text-sm">
   <div class="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
     
@@ -70,7 +76,7 @@
     </button>
   </div>
 
-  <!-- NAVBAR -->
+   <!-- NAVBAR -->
 <nav class="hidden lg:block border-t bg-[#f6efed]">
   <ul class="max-w-7xl mx-auto px-6 py-4 flex gap-8 font-poppins text-sm font-medium">
 
@@ -108,134 +114,45 @@
 
   <!-- MOBILE MENU -->
   <div id="mobileMenu" class="hidden lg:hidden bg-[#f6efed] border-t">
-    <ul class="flex flex-col gap-4 px-6 py-6 font-poppins text-sm">
-      <li><a href="/" class="block">HOME</a></li>
-    <li><a href="/about.html" class="block">ABOUT</a></li>
-    <li><a href="/shop.html" class="block">SHOP</a></li>
-    <li><a href="/pricing.html" class="block">PRICING</a></li>
-    <li><a href="/pages.html" class="block">PAGES</a></li>
-    <li><a href="/blog.html" class="block text-[#e9a1a3]">BLOG</a></li>
-    <li><a href="/team.html" class="block">OUR TEAM</a></li>
-    <li><a href="/faq.html" class="block">FAQ</a></li>
-    <li><a href="/contact.html" class="block">CONTACT</a></li>
-    </ul>
+   <ul class="max-w-7xl mx-auto px-6 py-4 flex gap-8 font-poppins text-sm font-medium">
+
+    <li><a href="/home.html" class="hover:text-[#e9a1a3]">HOME</a></li>
+
+    <li><a href="/about.html" class="hover:text-[#e9a1a3]">ABOUT</a></li>
+
+    <li class="flex items-center gap-1 cursor-pointer hover:text-[#e9a1a3]">
+      <a href="/shop.html">SHOP</a>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </li>
+
+    <li><a href="/pricing.html" class="hover:text-[#e9a1a3]">PRICING</a></li>
+
+    <li class="flex items-center gap-1 cursor-pointer hover:text-[#e9a1a3]">
+      <a href="/pages.html">PAGES</a>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </li>
+
+    <li class="text-[#e9a1a3] flex items-center gap-1">
+      <a href="/blog.html">BLOG</a>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </li>
+
+    <li><a href="/team.html" class="hover:text-[#e9a1a3]">OUR TEAM</a></li>
+
+    <li><a href="/testimonials.html" class="hover:text-[#e9a1a3]">TESTIMONIALS</a></li>
+
+    <li><a href="/FAQ.html" class="hover:text-[#e9a1a3]">FAQ</a></li>
+
+    <li><a href="/contact.html" class="hover:text-[#e9a1a3]">CONTACT</a></li>
+
+  </ul>
   </div>
 </header>
 
+
+
+
     
-<section class="py-24 bg-white">
-  <div class="max-w-7xl mx-auto px-6 text-center">
-    <h2 class="text-4xl md:text-5xl font-serif font-semibold mb-12 text-gray-900">
-      Our Pricing Plans
-    </h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-      <!-- Basic Plan -->
-      <div class="border border-pink-200 rounded-xl p-8 flex flex-col items-center text-gray-800">
-        <h3 class="text-xl font-semibold mb-4">Basic</h3>
-        <p class="text-4xl font-bold mb-4">$9.99 <span class="text-sm font-normal">/ month</span></p>
-        <div class="border-b border-pink-200 w-full mb-4"></div>
-        <ul class="space-y-2 mb-6 text-left w-full">
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Classic, Everyday</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Standard</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Limited</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Discounts on Accessories 10%</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Hijab Styling Workshops</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Shipping Discounts</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Priority Customer Support</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Cancel Anytime</li>
-        </ul>
-        <button class="w-full border border-pink-300 text-pink-300 rounded-full py-3 mt-auto hover:bg-pink-400 hover:text-white transition font-semibold">
-          SELECT PLAN
-        </button>
-      </div>
-
-      <!-- Standard Plan (Highlighted) -->
-      <div class="bg-pink-200 rounded-xl p-8 flex flex-col items-center text-white">
-        <h3 class="text-xl font-semibold mb-4">Standard</h3>
-        <p class="text-4xl font-bold mb-4">$19.99 <span class="text-sm font-normal">/ month</span></p>
-        <div class="border-b border-pink-300 w-full mb-4"></div>
-        <ul class="space-y-2 mb-6 text-left w-full">
-          <li class="flex items-center gap-2"><span class="text-white">✔</span> Classic, Everyday</li>
-          <li class="flex items-center gap-2"><span class="text-white">✔</span> Standard</li>
-          <li class="flex items-center gap-2"><span class="text-white">✔</span> Limited</li>
-          <li class="flex items-center gap-2"><span class="text-white">✔</span> Discounts on Accessories 10%</li>
-          <li class="flex items-center gap-2"><span class="text-white">✔</span> Hijab Styling Workshops</li>
-          <li class="flex items-center gap-2"><span class="text-white">✔</span> Shipping Discounts</li>
-          <li class="flex items-center gap-2"><span class="text-white">✔</span> Priority Customer Support</li>
-          <li class="flex items-center gap-2"><span class="text-white">✔</span> Cancel Anytime</li>
-        </ul>
-        <button class="w-full bg-black text-white rounded-full py-3 mt-auto hover:bg-gray-800 transition font-semibold">
-          SELECT PLAN
-        </button>
-      </div>
-
-      <!-- Premium Plan -->
-      <div class="border border-pink-200 rounded-xl p-8 flex flex-col items-center text-gray-800">
-        <h3 class="text-xl font-semibold mb-4">Premium</h3>
-        <p class="text-4xl font-bold mb-4">$29.99 <span class="text-sm font-normal">/ month</span></p>
-        <div class="border-b border-pink-200 w-full mb-4"></div>
-        <ul class="space-y-2 mb-6 text-left w-full">
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Classic, Everyday</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Standard</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Limited</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Discounts on Accessories 10%</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Hijab Styling Workshops</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Shipping Discounts</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Priority Customer Support</li>
-          <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Cancel Anytime</li>
-        </ul>
-        <button class="w-full border border-pink-300 text-pink-300 rounded-full py-3 mt-auto hover:bg-pink-400 hover:text-white transition font-semibold">
-          SELECT PLAN
-        </button>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-<!-- SECTION -->
-<section class="flex flex-col lg:flex-row min-h-screen">
-
-  <!-- LEFT CONTENT -->
-  <div class="w-full lg:w-1/2 bg-black text-white flex items-center">
-    <div class="px-8 md:px-16 lg:px-20 py-16">
-
-      <span class="text-[#e05a47] text-xs tracking-[3px] uppercase block mb-5">
-        IS YOUR CHOICE
-      </span>
-
-      <h1 class="font-playfair text-4xl md:text-5xl xl:text-[52px] leading-tight mb-6">
-        See Which is the <br>
-        Best Price Plan <br>
-        for You
-      </h1>
-
-      <p class="text-gray-300 text-sm md:text-base leading-relaxed max-w-md">
-        Lorem ipsum dolor sit amet consectetur. Montes quisque
-        urna molestie tincidunt aliquet quam. Imperdiet at
-        pellentesque vitae aliquet tempor eget rutrum tellus.
-        Leo a luctus vitae pellentesque vitae aliquet tempor eget rutrum.
-      </p>
-
-    </div>
-  </div>
-
-  <!-- RIGHT IMAGE -->
-  <div class="w-full lg:w-1/2">
-    <img 
-      src="image.jpg" 
-      alt="Hijab Model"
-      class="w-full h-full object-cover"
-    >
-  </div>
-
-</section>
-
-
 
 
 

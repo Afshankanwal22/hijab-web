@@ -69,32 +69,53 @@
   </div>
 
   <!-- NAVBAR -->
-  <nav class="hidden lg:block border-t bg-[#f6efed]">
-    <ul class="max-w-7xl mx-auto px-6 py-4 flex gap-8 font-poppins text-sm font-medium">
-      <li>HOME</li>
-      <li>ABOUT</li>
-      <li class="flex items-center gap-1">SHOP <i class="fa-solid fa-chevron-down text-xs"></i></li>
-      <li>PRICING</li>
-      <li class="flex items-center gap-1">PAGES <i class="fa-solid fa-chevron-down text-xs"></i></li>
-      <li class="text-[#e9a1a3] flex items-center gap-1">BLOG <i class="fa-solid fa-chevron-down text-xs"></i></li>
-      <li>OUR TEAM</li>
-      <li>TESTIMONIALS</li>
-      <li>FAQ</li>
-      <li>CONTACT</li>
-    </ul>
-  </nav>
+<nav class="hidden lg:block border-t bg-[#f6efed]">
+  <ul class="max-w-7xl mx-auto px-6 py-4 flex gap-8 font-poppins text-sm font-medium">
+
+    <li><a href="/home.html" class="hover:text-[#e9a1a3]">HOME</a></li>
+
+    <li><a href="/about.html" class="hover:text-[#e9a1a3]">ABOUT</a></li>
+
+    <li class="flex items-center gap-1 cursor-pointer hover:text-[#e9a1a3]">
+      <a href="/shop.html">SHOP</a>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </li>
+
+    <li><a href="/pricing.html" class="hover:text-[#e9a1a3]">PRICING</a></li>
+
+    <li class="flex items-center gap-1 cursor-pointer hover:text-[#e9a1a3]">
+      <a href="/pages.html">PAGES</a>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </li>
+
+    <li class="text-[#e9a1a3] flex items-center gap-1">
+      <a href="/blog.html">BLOG</a>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </li>
+
+    <li><a href="/team.html" class="hover:text-[#e9a1a3]">OUR TEAM</a></li>
+
+    <li><a href="/testimonials.html" class="hover:text-[#e9a1a3]">TESTIMONIALS</a></li>
+
+    <li><a href="/FAQ.html" class="hover:text-[#e9a1a3]">FAQ</a></li>
+
+    <li><a href="/contact.html" class="hover:text-[#e9a1a3]">CONTACT</a></li>
+
+  </ul>
+</nav>
 
   <!-- MOBILE MENU -->
   <div id="mobileMenu" class="hidden lg:hidden bg-[#f6efed] border-t">
     <ul class="flex flex-col gap-4 px-6 py-6 font-poppins text-sm">
-      <li>HOME</li>
-      <li>ABOUT</li>
-      <li>SHOP</li>
-      <li>PRICING</li>
-      <li>PAGES</li>
-      <li class="text-[#e9a1a3]">BLOG</li>
-      <li>OUR TEAM</li>
-      <li>CONTACT</li>
+      <li><a href="/" class="block">HOME</a></li>
+    <li><a href="/about.html" class="block">ABOUT</a></li>
+    <li><a href="/shop.html" class="block">SHOP</a></li>
+    <li><a href="/pricing.html" class="block">PRICING</a></li>
+    <li><a href="/pages.html" class="block">PAGES</a></li>
+    <li><a href="/blog.html" class="block text-[#e9a1a3]">BLOG</a></li>
+    <li><a href="/team.html" class="block">OUR TEAM</a></li>
+    <li><a href="/faq.html" class="block">FAQ</a></li>
+    <li><a href="/contact.html" class="block">CONTACT</a></li>
     </ul>
   </div>
 </header>
@@ -102,6 +123,82 @@
     
 
 
+<section class="max-w-7xl mx-auto px-6 py-24">
+  <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+    <!-- LEFT MAP -->
+    <div class="w-full h-[520px] overflow-hidden rounded-md">
+      <iframe
+        class="w-full h-full"
+        src="https://www.google.com/maps?q=London%20Eye&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div>
+      <p class="text-pink-400 uppercase tracking-widest text-xs mb-4 font-poppins">
+        Contact
+      </p>
+
+      <h2 class="text-4xl font-playfair mb-6">Contact Us</h2>
+
+      <p class="text-gray-600 mb-8 font-poppins max-w-xl">
+        We’re always happy to answer any questions you might have. If you want to chat
+        about a type or style of hijab you’re looking for, please get in touch.
+      </p>
+
+      <!-- CONTACT INFO -->
+      <div class="space-y-3 text-sm font-poppins mb-10">
+        <p class="font-semibold">Contact Info</p>
+        <p>768 Market Street San Francisco, CA 64015, United States</p>
+        <p>customer@jamila.com</p>
+        <p>(+021) 345 678 910</p>
+      </div>
+
+      <hr class="border-dashed border-gray-300 mb-8">
+
+      <p class="font-semibold font-poppins mb-6">
+        We look forward to hearing from you!
+      </p>
+
+      <!-- FORM -->
+      <form class="space-y-5 font-poppins">
+        <input
+          type="text"
+          placeholder="Name"
+          class="w-full bg-gray-100 px-5 py-4 rounded-md outline-none focus:ring-2 focus:ring-pink-300"
+        />
+
+        <input
+          type="email"
+          placeholder="Email address"
+          class="w-full bg-gray-100 px-5 py-4 rounded-md outline-none focus:ring-2 focus:ring-pink-300"
+        />
+
+        <input
+          type="text"
+          placeholder="Phone"
+          class="w-full bg-gray-100 px-5 py-4 rounded-md outline-none focus:ring-2 focus:ring-pink-300"
+        />
+
+        <textarea
+          rows="4"
+          placeholder="Message"
+          class="w-full bg-gray-100 px-5 py-4 rounded-md outline-none focus:ring-2 focus:ring-pink-300"
+        ></textarea>
+
+        <button
+          type="submit"
+          class="bg-[#e9a1a3] text-white px-10 py-4 rounded-full text-sm tracking-widest hover:bg-[#e08b8d] transition">
+          SEND
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>
 
 
     
