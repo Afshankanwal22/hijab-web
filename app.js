@@ -118,3 +118,56 @@ form && form.addEventListener("submit", async (e) => {
   }, 1500);
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+
+  updateCartCount();
+
+  // ================================
+  // 🔹 Add to Cart Buttons (HOME PAGE)
+  // ================================
+  const buttons = document.querySelectorAll(".add-to-cart");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", async () => {
+
+      // 🔐 Check login
+      const { data: { user } } = await client.auth.getUser();
+
+      if (!user) {
+        Swal.fire({
+          icon: "warning",
+          title: "Login Required",
+          text: "Please login first to add items to cart"
+        });
+        return;
+      }
+
+      // 🔹 Product Data from HTML
+      const product = {
+        user_id: user.id,
+        product_id: btn.dataset.id,
+        product_name: btn.dataset.name,
+        price: Number(btn.dataset.price),
+        quantity: 1,
+        image_url: btn.dataset.image
+      };
+
+      // 🔹 Insert into cart
+      const { error } = await client.from("cart").insert([product]);
+
+      if (error) {
+        Swal.fire("Error", error.message, "error");
+      } else {
+        Swal.fire({
+          icon: "success",
+          title: "Added to Cart 🛒",
+          timer: 1200,
+          showConfirmButton: false
+        });
+
+        updateCartCount();
+      }
+    });
+  });
+
+});
