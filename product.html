@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Detail</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white font-sans">
+
+<div class="max-w-6xl mx-auto px-6 py-16">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+
+    <!-- Product Image -->
+    <div class="relative">
+      <img
+        src="https://images.unsplash.com/photo-1542060748-10c28b62716f"
+        alt="Hijab"
+        class="rounded-md w-full object-cover"
+      />
+      <button class="absolute top-4 right-4 bg-white p-2 rounded-full shadow">
+        🔍
+      </button>
+    </div>
+
+    <!-- Product Info -->
+    <div>
+      <h1 class="text-4xl font-serif mb-4">Cape Town Garden Hijab</h1>
+
+      <!-- Rating -->
+      <div class="flex items-center gap-2 mb-4">
+        <div class="flex text-yellow-400 text-lg">
+          ★★★★★
+        </div>
+        <span class="text-sm text-gray-500">(1 customer review)</span>
+      </div>
+
+      <!-- Price -->
+      <div class="flex items-center gap-4 mb-6">
+        <span class="text-gray-400 line-through text-xl">$40</span>
+        <span class="text-2xl font-semibold">$23</span>
+      </div>
+
+      <!-- Description -->
+      <p class="text-gray-600 leading-relaxed mb-8">
+        Velit, condimentum nibh facilisi diam volutpat ullamcorper.
+        Faucibus in dignissim nunc, eget molestie id amet vitae congue nulla.
+        Aenean nec erat sed sociis sed neque. Sem ante leo facilisis morbi.
+      </p>
+
+      <!-- Add to Cart -->
+      <div class="flex items-center gap-4 mb-8">
+        <input
+          type="number"
+          value="2"
+          class="w-16 h-12 border rounded-md text-center"
+        />
+        <button class="bg-rose-300 hover:bg-rose-400 transition text-white px-12 h-12 rounded-full uppercase tracking-wide">
+          Add to Cart
+        </button>
+      </div>
+
+      <!-- Meta Info -->
+      <div class="text-sm text-gray-700 space-y-2">
+        <p><span class="font-semibold">SKU:</span> 00157PD</p>
+        <p><span class="font-semibold">Category:</span> Hijab</p>
+        <p><span class="font-semibold">Tag:</span> Hijab</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="mt-20 border-t pt-10">
+    <div class="flex gap-8 uppercase text-sm tracking-wide">
+      <button class="border-b-2 border-rose-300 pb-2 text-rose-400">
+        Description
+      </button>
+      <button class="text-gray-500">
+        Reviews (1)
+      </button>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
