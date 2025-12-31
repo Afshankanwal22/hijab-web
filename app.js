@@ -12,7 +12,7 @@ console.log(client);
 // 🔹 Form submit
 const form = document.querySelector("form");
 
-form.addEventListener("submit", async (e) => {
+form &&form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const fullName = form.querySelector('input[type="text"]').value;
@@ -118,56 +118,52 @@ form && form.addEventListener("submit", async (e) => {
   }, 1500);
 });
 
+// 🔹 Wait until DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
 
-  updateCartCount();
+  const addToCartBtn = document.querySelector("button.bg-rose-300");
+  const quantityInput = document.querySelector("input[type='number']");
+  const productName = document.querySelector("h1").innerText;
+  const price = Number(document.querySelector(".text-2xl").innerText.replace("$", ""));
+  const productImage = document.querySelector("img").src;
+  const productId = document.querySelector("p span.font-semibold").nextSibling.textContent.trim(); // SKU
 
-  // ================================
-  // 🔹 Add to Cart Buttons (HOME PAGE)
-  // ================================
-  const buttons = document.querySelectorAll(".add-to-cart");
+  addToCartBtn.addEventListener("click", async () => {
 
-  buttons.forEach(btn => {
-    btn.addEventListener("click", async () => {
+    // 🔐 Check if user is logged in
+    const { data: { user } } = await client.auth.getUser();
 
-      // 🔐 Check login
-      const { data: { user } } = await client.auth.getUser();
+    if (!user) {
+      Swal.fire({
+        icon: "warning",
+        title: "Login Required",
+        text: "Please login first to add items to cart"
+      });
+      return;
+    }
 
-      if (!user) {
-        Swal.fire({
-          icon: "warning",
-          title: "Login Required",
-          text: "Please login first to add items to cart"
-        });
-        return;
-      }
+    // 🔹 Prepare product data
+    const product = {
+      user_id: user.id,
+      product_id: productId,
+      product_name: productName,
+      price: price,
+      quantity: Number(quantityInput.value),
+      // image_url: productImage
+    };
 
-      // 🔹 Product Data from HTML
-      const product = {
-        user_id: user.id,
-        product_id: btn.dataset.id,
-        product_name: btn.dataset.name,
-        price: Number(btn.dataset.price),
-        quantity: 1,
-        image_url: btn.dataset.image
-      };
+    // 🔹 Insert into Supabase table 'AddToCard'
+    const { error } = await client.from("AddToCard").insert([product]);
 
-      // 🔹 Insert into cart
-      const { error } = await client.from("cart").insert([product]);
-
-      if (error) {
-        Swal.fire("Error", error.message, "error");
-      } else {
-        Swal.fire({
-          icon: "success",
-          title: "Added to Cart 🛒",
-          timer: 1200,
-          showConfirmButton: false
-        });
-
-        updateCartCount();
-      }
-    });
+    if (error) {
+      Swal.fire("Error", error.message, "error");
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "Added to Cart 🛒",
+        timer: 1200,
+        showConfirmButton: false
+      });
+    }
   });
-
 });
