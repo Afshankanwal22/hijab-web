@@ -272,3 +272,373 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
+
+// document.addEventListener("DOMContentLoaded", async () => {
+
+//   // 🔐 User check
+//   const { data: { user } } = await client.auth.getUser();
+//   if (!user) {
+//     Swal.fire("Login Required", "Please login first", "warning");
+//     window.location.href = "login.html";
+//     return;
+//   }
+
+//   // 🛒 Fetch cart items
+//   const { data, error } = await client
+//     .from("AddToCard")
+//     .select("*")
+//     .eq("user_id", user.id);
+
+//   if (error) {
+//     Swal.fire("Error", error.message, "error");
+//     return;
+//   }
+
+//   const cartContainer = document.getElementById("cartItems");
+//   cartContainer.innerHTML = "";
+
+//   if (!data.length) {
+//     cartContainer.innerHTML = "<p>Your cart is empty 🛒</p>";
+//     return;
+//   }
+
+//   let total = 0;
+
+//   data.forEach(item => {
+//     total += item.price * item.quantity;
+
+//     cartContainer.innerHTML += `
+//       <div class="flex justify-between border-b py-3">
+//         <div>
+//           <h3 class="font-semibold">${item.product_name}</h3>
+//           <p>Qty: ${item.quantity}</p>
+//         </div>
+//         <p>$${item.price * item.quantity}</p>
+//       </div>
+//     `;
+//   });
+
+//   document.getElementById("totalAmount").innerText = "$" + total;
+// });
+// document.getElementById("placeOrder").addEventListener("click", async () => {
+
+//   const { data: { user } } = await client.auth.getUser();
+//   if (!user) return;
+
+//   // 🔹 Cart fetch
+//   const { data: cartItems, error } = await client
+//     .from("AddToCard")
+//     .select("*")
+//     .eq("user_id", user.id);
+
+//   if (error || !cartItems.length) {
+//     Swal.fire("Cart Empty", "No items found", "warning");
+//     return;
+//   }
+
+//   // 🔹 Prepare orders
+//   const orders = cartItems.map(item => ({
+//     user_id: user.id,
+//     product_id: item.product_id,
+//     product_name: item.product_name,
+//     price: item.price,
+//     quantity: item.quantity,
+//     status: "completed"
+//   }));
+
+//   // 🔹 Insert into Orders table
+//   const { error: orderError } = await client
+//     .from("Orders")
+//     .insert(order);
+
+//   if (orderError) {
+//     Swal.fire("Error", orderError.message, "error");
+//     return;
+//   }
+
+//   // 🔹 Clear cart
+//   await client
+//     .from("AddToCard")
+//     .delete()
+//     .eq("user_id", user.id);
+
+//   Swal.fire({
+//     icon: "success",
+//     title: "Order Placed 🎉",
+//     text: "Thank you for shopping!",
+//   });
+
+//   setTimeout(() => {
+//     window.location.href = "checkout.html";
+//   }, 1500);
+// }); 
+// // ===============================
+// // 🔹 Load Checkout Data
+// // ===============================
+// document.addEventListener("DOMContentLoaded", async () => {
+
+//   // 🔐 Check user login
+//   const { data: { user } } = await client.auth.getUser();
+//   if (!user) {
+//     Swal.fire("Login Required", "Please login first", "warning");
+//     window.location.href = "login.html";
+//     return;
+//   }
+
+//   // 🛒 Fetch cart items
+//   const { data: cartItems, error } = await client
+//     .from("AddToCard")
+//     .select("*")
+//     .eq("user_id", user.id);
+
+//   if (error) {
+//     Swal.fire("Error", error.message, "error");
+//     return;
+//   }
+
+//   if (!cartItems || cartItems.length === 0) {
+//     Swal.fire("Empty Cart", "Your cart is empty", "info");
+//     return;
+//   }
+
+//   // 🧮 Calculate totals
+//   let totalQty = 0;
+//   let totalPrice = 0;
+
+//   cartItems.forEach(item => {
+//     totalQty += item.quantity;
+//     totalPrice += item.price * item.quantity;
+//   });
+
+//   // 🖥️ Show data in HTML
+//   document.getElementById("productName").innerText =
+//     cartItems.map(i => i.product_name).join(", ");
+
+//   document.getElementById("productPrice").innerText =
+//     "$" + cartItems.reduce((sum, i) => sum + i.price, 0);
+
+//   document.getElementById("productQty").innerText = totalQty;
+
+//   document.getElementById("productTotal").innerText = "$" + totalPrice;
+
+//   // ===============================
+//   // ✅ Confirm Order
+//   // ===============================
+//   document.getElementById("confirmOrder").addEventListener("click", async () => {
+
+//     const orders = cartItems.map(item => ({
+//       user_id: user.id,
+//       product_id: item.product_id,
+//       product_name: item.product_name,
+//       price: item.price,
+//       quantity: item.quantity,
+//       total: item.price * item.quantity,
+//       status: "confirmed"
+//     }));
+
+// //     // 📦 Insert orders
+// //     const { error: orderError } = await client
+// //       .from("Orders")
+// //       .insert(order);
+
+// //     if (orderError) {
+// //       Swal.fire("Order Failed", orderError.message, "error");
+// //       return;
+// //     }
+
+// //     // 🗑️ Clear cart
+// //     await client
+// //       .from("AddToCard")
+// //       .delete()
+// //       .eq("user_id", user.id);
+
+// //     // 🎉 Success
+// //     Swal.fire({
+// //       icon: "success",
+// //       title: "Order Placed 🎉",
+// //       text: "Thank you for your purchase!",
+// //       timer: 2000,
+// //       showConfirmButton: false
+// //     });
+
+// //     setTimeout(() => {
+// //       window.location.href = "checkout.html";
+// //     }, 2000);
+// //   });
+// // });
+
+// document.addEventListener("DOMContentLoaded", async () => {
+
+//   // 🔐 User check
+//   const { data: { user } } = await client.auth.getUser();
+//   if (!user) {
+//     Swal.fire("Login Required", "Please login first", "warning");
+//     window.location.href = "login.html";
+//     return;
+//   }
+
+//   // 🛒 Fetch cart items
+//   const { data: cartItems, error } = await client
+//     .from("AddToCard")
+//     .select("*")
+//     .eq("user_id", user.id);
+
+//   if (error || !cartItems.length) {
+//     Swal.fire("Cart Empty", "No items found", "warning");
+//     return;
+//   }
+
+//   // 🔹 For demo → first item
+//   const item = cartItems[0];
+//   const total = item.price * item.quantity;
+
+//   // 🔹 Populate HTML
+//   document.getElementById("productName").innerText = item.product_name;
+//   document.getElementById("productPrice").innerText = "$" + item.price;
+//   document.getElementById("productQty").innerText = item.quantity;
+//   document.getElementById("productTotal").innerText = "$" + total;
+
+//   // ✅ Confirm Order Button
+//   document.getElementById("confirmOrder").addEventListener("click", async () => {
+
+//     const orders = cartItems.map(i => ({
+//       user_id: user.id,
+//       product_id: i.product_id,
+//       product_name: i.product_name,
+//       price: i.price,
+//       quantity: i.quantity,
+//       status: "completed"
+//     }));
+
+//     // 🔹 Insert into Orders
+//     const { error: orderError } = await client
+//       .from("Orders")
+//       .insert(order);
+
+//     if (orderError) {
+//       Swal.fire("Error", orderError.message, "error");
+//       return;
+//     }
+
+//     // 🔹 Clear cart
+//     await client
+//       .from("AddToCard")
+//       .delete()
+//       .eq("user_id", user.id);
+
+//     Swal.fire({
+//       icon: "success",
+//       title: "Order Placed 🎉",
+//       text: "Thank you for shopping!"
+//     });
+
+//     setTimeout(() => {
+//       window.location.href = "home.html";
+//     }, 1500);
+//   });
+// });/***********************
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+  const addBtn = document.querySelector("button.bg-rose-300");
+  if (!addBtn) return; // not product page
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get("id");
+
+  const product = products.find(p => p.id === productId);
+  if (!product) return;
+
+  document.querySelector("h1").innerText = product.name;
+  document.querySelector("img").src = product.image;
+  document.querySelector(".text-2xl").innerText = "$" + product.price;
+  document.querySelector("p.mb-8").innerText = product.description;
+
+  addBtn.addEventListener("click", async () => {
+
+    const qty = Number(document.querySelector("input[type='number']").value);
+
+    const { data: { user } } = await client.auth.getUser();
+    if (!user) {
+      Swal.fire("Login Required", "Please login first", "warning");
+      return;
+    }
+
+    const { error } = await client.from("AddToCard").insert([{
+      user_id: user.id,
+      product_id: product.id,
+      product_name: product.name,
+      price: product.price,
+      quantity: qty
+    }]);
+
+    if (error) {
+      Swal.fire("Error", error.message, "error");
+      return;
+    }
+
+    Swal.fire("Added", "Item added to cart", "success");
+    setTimeout(() => window.location.href = "checkout.html", 1200);
+  });
+});
+
+/***********************
+  CHECKOUT PAGE
+************************/
+document.addEventListener("DOMContentLoaded", async () => {
+
+  const nameEl = document.getElementById("productName");
+  if (!nameEl) return; // not checkout page
+
+  const priceEl = document.getElementById("productPrice");
+  const qtyEl = document.getElementById("productQty");
+  const totalEl = document.getElementById("productTotal");
+  const confirmBtn = document.getElementById("confirmOrder");
+
+  const { data: { user } } = await client.auth.getUser();
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  const { data: cart, error } = await client
+    .from("AddToCard")
+    .select("*")
+    .eq("user_id", user.id);
+
+  if (error || !cart.length) {
+    Swal.fire("Empty Cart", "No items found", "warning");
+    return;
+  }
+
+  const item = cart[0];
+  const total = item.price * item.quantity;
+
+  nameEl.innerText = item.product_name;
+  priceEl.innerText = "$" + item.price;
+  qtyEl.innerText = item.quantity;
+  totalEl.innerText = "$" + total;
+
+  confirmBtn.addEventListener("click", async () => {
+
+    const { error: orderError } = await client
+      .from("Orders")
+      .insert([{
+        user_id: user.id,
+        product_id: item.product_id,
+        product_name: item.product_name,
+        price: item.price,
+        quantity: item.quantity,
+        status: "completed"
+      }]);
+
+    if (orderError) {
+      Swal.fire("Order Failed", orderError.message, "error");
+      return;
+    }
+
+    await client.from("AddToCard").delete().eq("user_id", user.id);
+
+    Swal.fire("Success", "Order placed 🎉", "success");
+  });
+});

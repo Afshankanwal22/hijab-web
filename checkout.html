@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <div class="max-w-3xl mx-auto px-6 py-16 bg-white rounded-lg shadow-lg mt-10">
+    <h1 class="text-3xl font-semibold mb-6">Checkout</h1>
+
+    <!-- Order Details -->
+    <div class="space-y-4 mb-6">
+      <div class="flex justify-between">
+        <span class="font-medium">Product:</span>
+        <span id="productName">Loading...</span>
+      </div>
+      <div class="flex justify-between">
+        <span class="font-medium">Price:</span>
+        <span id="productPrice">Loading...</span>
+      </div>
+      <div class="flex justify-between">
+        <span class="font-medium">Quantity:</span>
+        <span id="productQty">Loading...</span>
+      </div>
+      <div class="flex justify-between font-semibold text-lg">
+        <span>Total:</span>
+        <span id="productTotal">Loading...</span>
+      </div>
+    </div>
+
+    <!-- Confirm Button -->
+    <button id="confirmOrder" class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg transition">
+      Confirm Order
+    </button>
+  </div>
+
+  <!-- SweetAlert2 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Supabase JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+  </body>
+</html>
