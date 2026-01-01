@@ -5,42 +5,59 @@
   <title>Checkout</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 font-sans">
 
-  <div class="max-w-3xl mx-auto px-6 py-16 bg-white rounded-lg shadow-lg mt-10">
-    <h1 class="text-3xl font-semibold mb-6">Checkout</h1>
+<body class="bg-gradient-to-br from-rose-50 to-gray-100 font-sans min-h-screen flex items-center justify-center">
 
-    <!-- Order Details -->
-    <div class="space-y-4 mb-6">
-      <div class="flex justify-between">
-        <span class="font-medium">Product:</span>
-        <span id="productName">Loading...</span>
+  <div class="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-10">
+
+    <!-- Heading -->
+    <h1 class="text-4xl font-serif text-gray-800 mb-8 text-center">
+      Checkout
+    </h1>
+
+    <!-- Order Card -->
+    <div class="bg-gray-50 rounded-xl p-6 space-y-5 border">
+
+      <div class="flex justify-between items-center">
+        <span class="text-gray-500 uppercase tracking-wide text-sm">Product</span>
+        <span id="productName" class="font-medium text-gray-800">Loading...</span>
       </div>
-      <div class="flex justify-between">
-        <span class="font-medium">Price:</span>
-        <span id="productPrice">Loading...</span>
+
+      <div class="flex justify-between items-center">
+        <span class="text-gray-500 uppercase tracking-wide text-sm">Price</span>
+        <span id="productPrice" class="font-medium text-gray-800">Loading...</span>
       </div>
-      <div class="flex justify-between">
-        <span class="font-medium">Quantity:</span>
-        <span id="productQty">Loading...</span>
+
+      <div class="flex justify-between items-center">
+        <span class="text-gray-500 uppercase tracking-wide text-sm">Quantity</span>
+        <span id="productQty" class="font-medium text-gray-800">Loading...</span>
       </div>
-      <div class="flex justify-between font-semibold text-lg">
-        <span>Total:</span>
-        <span id="productTotal">Loading...</span>
+
+      <div class="border-t pt-4 flex justify-between items-center">
+        <span class="text-lg font-semibold text-gray-700">Total</span>
+        <span id="productTotal" class="text-2xl font-semibold text-rose-500">
+          Loading...
+        </span>
       </div>
     </div>
 
     <!-- Confirm Button -->
-    <button id="confirmOrder" class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg transition">
+    <button
+      id="confirmOrder"
+      class="mt-10 w-full bg-rose-400 hover:bg-rose-500 text-white py-4 rounded-full text-lg uppercase tracking-wide transition shadow-lg">
       Confirm Order
     </button>
+
   </div>
 
-  <!-- SweetAlert2 CDN -->
+  <!-- SweetAlert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <!-- Supabase JS CDN -->
+  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- App JS -->
   <script src="app.js"></script>
-  </body>
+
+</body>
 </html>

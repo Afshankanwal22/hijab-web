@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen font-sans">
+
+  <!-- Top Bar -->
+  <header class="bg-white shadow px-8 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-serif font-semibold text-rose-400">
+      Admin Dashboard
+    </h1>
+    <button class="bg-rose-400 hover:bg-rose-500 text-white px-5 py-2 rounded-full">
+      Logout
+    </button>
+  </header>
+
+  <div class="flex">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-lg min-h-screen p-6">
+      <nav class="space-y-4 text-gray-700">
+        <a href="#" class="block font-medium text-rose-400">📦 Orders</a>
+        <a href="AdminProduct.html" class="block hover:text-rose-400">🛍 Products</a>
+        <a href="#" class="block hover:text-rose-400">👤 Users</a>
+        <a href="#" class="block hover:text-rose-400">📊 Reports</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8">
+
+      <!-- Orders Table -->
+      <div class="bg-white rounded-xl shadow p-6">
+        <h2 class="text-xl font-semibold mb-6 text-gray-800">
+          Orders Management
+        </h2>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b text-gray-600">
+                <th class="py-3">Order ID</th>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="ordersTable">
+              <!-- Example Row -->
+              <tr class="border-b hover:bg-gray-50">
+                <td class="py-3">#1023</td>
+                <td>Rose Abaya</td>
+                <td>2</td>
+                <td>Rs. 5,000</td>
+                <td>
+                  <span class="px-3 py-1 rounded-full text-sm bg-yellow-100 text-yellow-700">
+                    Pending
+                  </span>
+                </td>
+                <td>
+                  <select class="border rounded px-3 py-1 text-sm">
+                    <option>Pending</option>
+                    <option>Confirmed</option>
+                    <option>Shipped</option>
+                    <option>Delivered</option>
+                    <option>Rejected</option>
+                  </select>
+                </td>
+              </tr>
+
+              <!-- Dynamic rows yahan JS se ayengi -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+
+  <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- App JS -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -273,271 +273,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-// document.addEventListener("DOMContentLoaded", async () => {
-
-//   // 🔐 User check
-//   const { data: { user } } = await client.auth.getUser();
-//   if (!user) {
-//     Swal.fire("Login Required", "Please login first", "warning");
-//     window.location.href = "login.html";
-//     return;
-//   }
-
-//   // 🛒 Fetch cart items
-//   const { data, error } = await client
-//     .from("AddToCard")
-//     .select("*")
-//     .eq("user_id", user.id);
-
-//   if (error) {
-//     Swal.fire("Error", error.message, "error");
-//     return;
-//   }
-
-//   const cartContainer = document.getElementById("cartItems");
-//   cartContainer.innerHTML = "";
-
-//   if (!data.length) {
-//     cartContainer.innerHTML = "<p>Your cart is empty 🛒</p>";
-//     return;
-//   }
-
-//   let total = 0;
-
-//   data.forEach(item => {
-//     total += item.price * item.quantity;
-
-//     cartContainer.innerHTML += `
-//       <div class="flex justify-between border-b py-3">
-//         <div>
-//           <h3 class="font-semibold">${item.product_name}</h3>
-//           <p>Qty: ${item.quantity}</p>
-//         </div>
-//         <p>$${item.price * item.quantity}</p>
-//       </div>
-//     `;
-//   });
-
-//   document.getElementById("totalAmount").innerText = "$" + total;
-// });
-// document.getElementById("placeOrder").addEventListener("click", async () => {
-
-//   const { data: { user } } = await client.auth.getUser();
-//   if (!user) return;
-
-//   // 🔹 Cart fetch
-//   const { data: cartItems, error } = await client
-//     .from("AddToCard")
-//     .select("*")
-//     .eq("user_id", user.id);
-
-//   if (error || !cartItems.length) {
-//     Swal.fire("Cart Empty", "No items found", "warning");
-//     return;
-//   }
-
-//   // 🔹 Prepare orders
-//   const orders = cartItems.map(item => ({
-//     user_id: user.id,
-//     product_id: item.product_id,
-//     product_name: item.product_name,
-//     price: item.price,
-//     quantity: item.quantity,
-//     status: "completed"
-//   }));
-
-//   // 🔹 Insert into Orders table
-//   const { error: orderError } = await client
-//     .from("Orders")
-//     .insert(order);
-
-//   if (orderError) {
-//     Swal.fire("Error", orderError.message, "error");
-//     return;
-//   }
-
-//   // 🔹 Clear cart
-//   await client
-//     .from("AddToCard")
-//     .delete()
-//     .eq("user_id", user.id);
-
-//   Swal.fire({
-//     icon: "success",
-//     title: "Order Placed 🎉",
-//     text: "Thank you for shopping!",
-//   });
-
-//   setTimeout(() => {
-//     window.location.href = "checkout.html";
-//   }, 1500);
-// }); 
-// // ===============================
-// // 🔹 Load Checkout Data
-// // ===============================
-// document.addEventListener("DOMContentLoaded", async () => {
-
-//   // 🔐 Check user login
-//   const { data: { user } } = await client.auth.getUser();
-//   if (!user) {
-//     Swal.fire("Login Required", "Please login first", "warning");
-//     window.location.href = "login.html";
-//     return;
-//   }
-
-//   // 🛒 Fetch cart items
-//   const { data: cartItems, error } = await client
-//     .from("AddToCard")
-//     .select("*")
-//     .eq("user_id", user.id);
-
-//   if (error) {
-//     Swal.fire("Error", error.message, "error");
-//     return;
-//   }
-
-//   if (!cartItems || cartItems.length === 0) {
-//     Swal.fire("Empty Cart", "Your cart is empty", "info");
-//     return;
-//   }
-
-//   // 🧮 Calculate totals
-//   let totalQty = 0;
-//   let totalPrice = 0;
-
-//   cartItems.forEach(item => {
-//     totalQty += item.quantity;
-//     totalPrice += item.price * item.quantity;
-//   });
-
-//   // 🖥️ Show data in HTML
-//   document.getElementById("productName").innerText =
-//     cartItems.map(i => i.product_name).join(", ");
-
-//   document.getElementById("productPrice").innerText =
-//     "$" + cartItems.reduce((sum, i) => sum + i.price, 0);
-
-//   document.getElementById("productQty").innerText = totalQty;
-
-//   document.getElementById("productTotal").innerText = "$" + totalPrice;
-
-//   // ===============================
-//   // ✅ Confirm Order
-//   // ===============================
-//   document.getElementById("confirmOrder").addEventListener("click", async () => {
-
-//     const orders = cartItems.map(item => ({
-//       user_id: user.id,
-//       product_id: item.product_id,
-//       product_name: item.product_name,
-//       price: item.price,
-//       quantity: item.quantity,
-//       total: item.price * item.quantity,
-//       status: "confirmed"
-//     }));
-
-// //     // 📦 Insert orders
-// //     const { error: orderError } = await client
-// //       .from("Orders")
-// //       .insert(order);
-
-// //     if (orderError) {
-// //       Swal.fire("Order Failed", orderError.message, "error");
-// //       return;
-// //     }
-
-// //     // 🗑️ Clear cart
-// //     await client
-// //       .from("AddToCard")
-// //       .delete()
-// //       .eq("user_id", user.id);
-
-// //     // 🎉 Success
-// //     Swal.fire({
-// //       icon: "success",
-// //       title: "Order Placed 🎉",
-// //       text: "Thank you for your purchase!",
-// //       timer: 2000,
-// //       showConfirmButton: false
-// //     });
-
-// //     setTimeout(() => {
-// //       window.location.href = "checkout.html";
-// //     }, 2000);
-// //   });
-// // });
-
-// document.addEventListener("DOMContentLoaded", async () => {
-
-//   // 🔐 User check
-//   const { data: { user } } = await client.auth.getUser();
-//   if (!user) {
-//     Swal.fire("Login Required", "Please login first", "warning");
-//     window.location.href = "login.html";
-//     return;
-//   }
-
-//   // 🛒 Fetch cart items
-//   const { data: cartItems, error } = await client
-//     .from("AddToCard")
-//     .select("*")
-//     .eq("user_id", user.id);
-
-//   if (error || !cartItems.length) {
-//     Swal.fire("Cart Empty", "No items found", "warning");
-//     return;
-//   }
-
-//   // 🔹 For demo → first item
-//   const item = cartItems[0];
-//   const total = item.price * item.quantity;
-
-//   // 🔹 Populate HTML
-//   document.getElementById("productName").innerText = item.product_name;
-//   document.getElementById("productPrice").innerText = "$" + item.price;
-//   document.getElementById("productQty").innerText = item.quantity;
-//   document.getElementById("productTotal").innerText = "$" + total;
-
-//   // ✅ Confirm Order Button
-//   document.getElementById("confirmOrder").addEventListener("click", async () => {
-
-//     const orders = cartItems.map(i => ({
-//       user_id: user.id,
-//       product_id: i.product_id,
-//       product_name: i.product_name,
-//       price: i.price,
-//       quantity: i.quantity,
-//       status: "completed"
-//     }));
-
-//     // 🔹 Insert into Orders
-//     const { error: orderError } = await client
-//       .from("Orders")
-//       .insert(order);
-
-//     if (orderError) {
-//       Swal.fire("Error", orderError.message, "error");
-//       return;
-//     }
-
-//     // 🔹 Clear cart
-//     await client
-//       .from("AddToCard")
-//       .delete()
-//       .eq("user_id", user.id);
-
-//     Swal.fire({
-//       icon: "success",
-//       title: "Order Placed 🎉",
-//       text: "Thank you for shopping!"
-//     });
-
-//     setTimeout(() => {
-//       window.location.href = "home.html";
-//     }, 1500);
-//   });
-// });/***********************
-
+/***********************/
 document.addEventListener("DOMContentLoaded", async () => {
 
   const addBtn = document.querySelector("button.bg-rose-300");
@@ -595,12 +331,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   const totalEl = document.getElementById("productTotal");
   const confirmBtn = document.getElementById("confirmOrder");
 
+  // 🔐 Login check
   const { data: { user } } = await client.auth.getUser();
   if (!user) {
     window.location.href = "login.html";
     return;
   }
 
+  // 🛒 Cart fetch
   const { data: cart, error } = await client
     .from("AddToCard")
     .select("*")
@@ -611,25 +349,33 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
+  // 👉 For now first item
   const item = cart[0];
   const total = item.price * item.quantity;
 
+  // 🖥️ UI Fill
   nameEl.innerText = item.product_name;
-  priceEl.innerText = "$" + item.price;
+  priceEl.innerText = "Rs " + item.price;
   qtyEl.innerText = item.quantity;
-  totalEl.innerText = "$" + total;
+  totalEl.innerText = "Rs " + total;
 
+  // ✅ CONFIRM ORDER
   confirmBtn.addEventListener("click", async () => {
 
+    const deliveryMinutes = Math.floor(Math.random() * 30) + 20;
+
+    // 📦 Insert into Orders (ADMIN WILL SEE THIS)
     const { error: orderError } = await client
-      .from("Orders")
+      .from("order")
       .insert([{
         user_id: user.id,
         product_id: item.product_id,
         product_name: item.product_name,
         price: item.price,
         quantity: item.quantity,
-        status: "completed"
+        total: total,
+        status: "Pending",            
+        delivery_time: `${deliveryMinutes} minutes`
       }]);
 
     if (orderError) {
@@ -637,8 +383,112 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    await client.from("AddToCard").delete().eq("user_id", user.id);
+    // 🗑️ Clear cart
+    await client
+      .from("AddToCard")
+      .delete()
+      .eq("user_id", user.id);
 
-    Swal.fire("Success", "Order placed 🎉", "success");
+    Swal.fire({
+      icon: "success",
+      title: "Order Placed 🎉",
+      html: `
+        <p>Your order has been placed.</p>
+        <p class="mt-2"><b>Estimated Delivery:</b> ${deliveryMinutes} minutes</p>
+      `
+    });
+  });
+});
+document.addEventListener("DOMContentLoaded", async () => {
+
+  const table = document.getElementById("ordersTable");
+  if (!table) return;
+
+  const { data: orders, error } = await client
+    .from("order")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  table.innerHTML = "";
+
+  orders.forEach(order => {
+    table.innerHTML += `
+      <tr class="border-b">
+        <td class="py-2">${order.product_name}</td>
+        <td>${order.quantity}</td>
+        <td>Rs ${order.total}</td>
+        <td>
+          <span class="px-3 py-1 rounded bg-yellow-100 text-sm">
+            ${order.status}
+          </span>
+        </td>
+        <td>${order.delivery_time}</td>
+      </tr>
+    `;
+  });
+});
+
+
+async function addProduct() {
+  const name = document.getElementById("name").value;
+  const description = document.getElementById("desc").value;
+  const price = document.getElementById("price").value;
+  const image = document.getElementById("image").value;
+
+  if (!name || !price) {
+    Swal.fire("Error", "Name & Price required", "error");
+    return;
+  }
+
+  const { error } = await client
+    .from("products")
+    .insert([{ name, description, price, image }]);
+
+  if (error) {
+    Swal.fire("Error", error.message, "error");
+    return;
+  }
+
+  Swal.fire("Success", "Product added 🎉", "success");
+
+  document.querySelectorAll("input, textarea")
+    .forEach(el => el.value = "");
+}
+document.addEventListener("DOMContentLoaded", async () => {
+  const productsContainer = document.getElementById("productsContainer");
+  if (!productsContainer) return;
+
+  // 🔹 Fetch products from Supabase
+  const { data: products, error } = await client
+    .from("product")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    Swal.fire("Error", error.message, "error");
+    return;
+  }
+
+  productsContainer.innerHTML = "";
+
+  // 🔹 Loop through products and render HTML
+  products.forEach(product => {
+    const div = document.createElement("div");
+    div.className = "border p-4 rounded-md shadow hover:shadow-lg transition";
+
+    div.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" class="w-full h-60 object-cover mb-4 rounded">
+      <h2 class="text-xl font-semibold mb-2">${product.name}</h2>
+      <p class="text-gray-600 mb-2">${product.description}</p>
+      <p class="text-2xl font-bold mb-4">$${product.price}</p>
+      <a href="product.html?id=${product.id}" class="bg-rose-300 px-6 py-2 text-white rounded-full hover:bg-rose-400 transition">View</a>
+    `;
+
+    productsContainer.appendChild(div);
   });
 });
