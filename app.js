@@ -434,6 +434,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 
+
+
+
 async function addProduct() {
   const name = document.getElementById("name").value;
   const description = document.getElementById("desc").value;
@@ -446,7 +449,7 @@ async function addProduct() {
   }
 
   const { error } = await client
-    .from("products")
+    .from("product")
     .insert([{ name, description, price, image }]);
 
   if (error) {
@@ -492,3 +495,116 @@ document.addEventListener("DOMContentLoaded", async () => {
     productsContainer.appendChild(div);
   });
 });
+
+// ================== IMAGE UPLOAD ==================
+async function uploadImage(file) {
+  if (!file) return null;
+
+  const fileName = `${Date.now()}-${file.name}`;
+
+  const { error } = await client.storage
+    .from("product-images") // bucket name
+    .upload(fileName, file);
+
+  if (error) {
+    Swal.fire("Upload Error", error.message, "error");
+    return null;
+  }
+
+  const { data } = client.storage
+    .from("product-images")
+    .getPublicUrl(fileName);
+
+  return data.publicUrl;
+}
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("productForm");
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name")?.value;
+    const price = document.getElementById("price")?.value;
+    const oldPrice = document.getElementById("oldPrice")?.value;
+    const category = document.getElementById("category")?.value;
+    const tag = document.getElementById("tag")?.value;
+    const stock = document.getElementById("stock")?.value;
+    const description = document.getElementById("description")?.value;
+
+    const imageMainFile = document.getElementById("imageMain")?.files[0];
+    const imageSecondaryFile = document.getElementById("imageSecondary")?.files[0];
+
+    if (!name || !price || !imageMainFile) {
+      Swal.fire("Error", "Name, Price & Image required", "error");
+      return;
+    }
+
+    Swal.fire({
+      title: "Uploading...",
+      allowOutsideClick: false,
+      didOpen: () => Swal.showLoading()
+    });
+
+    const mainImageUrl = await uploadImage(imageMainFile);
+    const secondaryImageUrl = await uploadImage(imageSecondaryFile);
+
+    if (!mainImageUrl) return;
+
+    const { error } = await client.from("product").insert([{
+      name,
+      price,
+      old_price: oldPrice || null,
+      category,
+      tag,
+      stock,
+      description,
+      image: mainImageUrl,
+      image_secondary: secondaryImageUrl
+    }]);
+
+    if (error) {
+      Swal.fire("Error", error.message, "error");
+      return;
+    }
+
+    Swal.fire("Success 🎉", "Product added successfully", "success");
+    form.reset();
+    loadProducts(); // refresh table
+  });
+});
+async function loadProducts() {
+  const table = document.querySelector("#productsTable tbody");
+  if (!table) return;
+
+  const { data, error } = await client
+    .from("product")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    Swal.fire("Error", error.message, "error");
+    return;
+  }
+
+  table.innerHTML = "";
+
+  data.forEach(p => {
+    table.innerHTML += `
+      <tr class="border-b">
+        <td class="p-2 flex items-center gap-2">
+          <img src="${p.image}" class="w-12 h-12 rounded object-cover">
+          ${p.name}
+        </td>
+        <td class="p-2">Rs ${p.price}</td>
+        <td class="p-2">${p.stock ?? "-"}</td>
+        <td class="p-2">${p.category ?? "-"}</td>
+        <td class="p-2 text-red-500 cursor-pointer">Delete</td>
+      </tr>
+    `;
+  });
+}
+
+document.addEventListener("DOMContentLoaded", loadProduct);
+
+
