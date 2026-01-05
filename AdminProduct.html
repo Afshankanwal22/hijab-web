@@ -8,24 +8,73 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="bg-gray-100 font-sans">
+  
+<!-- NAVBAR -->
+  <header class="bg-[#f6efed] border-b shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
- <div class="max-w-6xl mx-auto py-10 px-4">
+      <!-- LOGO -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-[#e9a1a3] flex items-center justify-center text-white font-bold">
+          J
+        </div>
+        <span class="font-playfair text-2xl font-semibold tracking-wide">
+          Jamila
+        </span>
+      </div>
 
-  <!-- Add Product Form -->
-  <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md mb-10">
-    <h2 class="text-3xl font-serif font-semibold mb-6 text-gray-800 dark:text-gray-100">Add New Product</h2>
-    <form id="productForm" class="space-y-4">
-      <input type="text" placeholder="Product Name" id="name" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-300">
-      <input type="number" placeholder="Price" id="price" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-300">
-      <input type="number" placeholder="Old Price (optional)" id="oldPrice" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-300">
-      <input type="text" placeholder="Category" id="category" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-300">
-      <input type="text" placeholder="Tag" id="tag" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-300">
-      <input type="number" placeholder="Stock Quantity" id="stock" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-300">
-      <input type="file" id="imageMain" accept="image/*" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-300">
-      <textarea placeholder="Description" id="description" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-300"></textarea>
-      <button type="submit" class="bg-rose-300 hover:bg-rose-400 text-white py-3 px-6 rounded-full w-full text-lg font-semibold transition">Add Product</button>
-    </form>
-  </div>
+      <!-- NAV LINKS -->
+      <nav class="hidden md:flex items-center gap-8 font-poppins text-sm font-medium">
+
+        <a href="/all-products.html" class="relative group text-gray-700">
+          All Products
+          <span class="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#e9a1a3] transition-all group-hover:w-full"></span>
+        </a>
+
+        <a href="/add-product.html"
+           class="bg-[#e9a1a3] text-white px-6 py-2 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition">
+          + Add Product
+        </a>
+
+      </nav>
+
+      <!-- MOBILE BUTTON -->
+      <button class="md:hidden text-2xl text-gray-700" onclick="toggleMenu()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu" class="hidden md:hidden bg-[#f6efed] border-t shadow-inner">
+      <div class="px-6 py-6 flex flex-col gap-5 font-poppins text-sm">
+        <a href="/all-products.html" class="py-2 border-b hover:text-[#e9a1a3]">All Products</a>
+        <a href="/add-product.html" class="bg-[#e9a1a3] text-white py-3 rounded-full text-center shadow-md">+ Add Product</a>
+      </div>
+    </div>
+  </header>
+   <div class="max-w-6xl mx-auto py-10 px-4 space-y-10">
+
+ <!-- ADD PRODUCT FORM -->
+    <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-200">
+      <h2 class="text-3xl font-serif font-semibold mb-6 text-gray-800">Add New Product</h2>
+      <form id="productForm" class="space-y-6">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <input type="text" placeholder="Product Name" id="name" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-300">
+          <input type="number" placeholder="Price" id="price" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-300">
+          <input type="number" placeholder="Old Price (optional)" id="oldPrice" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-300">
+          <input type="number" placeholder="Stock Quantity" id="stock" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-300">
+          <input type="text" placeholder="Category" id="category" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-300">
+          <input type="text" placeholder="Tag" id="tag" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-300">
+          <input type="file" id="imageMain" accept="image/*" class="w-full col-span-2 p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-300">
+          <textarea placeholder="Description" id="description" class="w-full col-span-2 p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-300"></textarea>
+        </div>
+
+        <button type="submit" class="bg-rose-300 hover:bg-rose-400 text-white py-3 px-6 rounded-full w-full text-lg font-semibold transition transform hover:scale-105">
+          Add Product
+        </button>
+      </form>
+    </div>
 
   <!-- Products Table -->
   <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md overflow-x-auto">
@@ -46,81 +95,19 @@
     </table>
   </div>
 
+
 </div>
-
   <script>
-    // 🔹 Supabase Client
-    const SUPABASE_URL = "https://eyyoigiytzhbtcwqvooa.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV5eW9pZ2l5dHpoYnRjd3F2b29hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5NDE0OTUsImV4cCI6MjA3MDUxNzQ5NX0.2LNSR60X9QXh2oih_bmnP31iKo5pV82-0cPa06J2L8k";
-
-    const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    const form = document.getElementById("productForm");
-    const tableBody = document.querySelector("#productsTable tbody");
-
-    // 🔹 Load Products
-    async function loadProducts() {
-      const { data, error } = await client.from("product").select("*").order("created_at", { ascending: false });
-      if (error) {
-        console.log(error.message);
-        return;
-      }
-      tableBody.innerHTML = "";
-      data.forEach(p => {
-        const tr = document.createElement("tr");
-        tr.classList.add("border-b");
-        tr.innerHTML = `
-          <td class="p-2">${p.name}</td>
-          <td class="p-2">$${p.price}</td>
-          <td class="p-2">${p.stock}</td>
-          <td class="p-2">${p.category}</td>
-          <td class="p-2">
-            <button data-id="${p.id}" class="bg-red-500 text-white px-2 py-1 rounded deleteBtn">Delete</button>
-          </td>
-        `;
-        tableBody.appendChild(tr);
-      });
-
-      // 🔹 Delete buttons
-      document.querySelectorAll(".deleteBtn").forEach(btn => {
-        btn.addEventListener("click", async () => {
-          const id = btn.getAttribute("data-id");
-          const { error } = await client.from("products").delete().eq("id", id);
-          if (error) Swal.fire("Error", error.message, "error");
-          else {
-            Swal.fire("Deleted", "Product removed", "success");
-            loadProducts();
-          }
-        });
-      });
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
     }
-
-    // 🔹 Add Product
-    form.addEventListener("submit", async e => {
-      e.preventDefault();
-      const product = {
-        name: document.getElementById("name").value,
-        price: parseFloat(document.getElementById("price").value),
-        old_price: parseFloat(document.getElementById("oldPrice").value) || null,
-        category: document.getElementById("category").value,
-        tag: document.getElementById("tag").value,
-        stock: parseInt(document.getElementById("stock").value),
-        image: document.getElementById("image").value,
-        description: document.getElementById("description").value
-      };
-
-      const { error } = await client.from("product").insert([product]);
-      if (error) {
-        Swal.fire("Error", error.message, "error");
-        return;
-      }
-
-      Swal.fire("Added", "Product added successfully", "success");
-      form.reset();
-      loadProducts();
-    });
-
-    loadProducts();
   </script>
+
+  <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
 </body>
 </html>
