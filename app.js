@@ -3,119 +3,112 @@ const SUPABASE_URL = "https://eyyoigiytzhbtcwqvooa.supabase.co";
 const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV5eW9pZ2l5dHpoYnRjd3F2b29hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5NDE0OTUsImV4cCI6MjA3MDUxNzQ5NX0.2LNSR60X9QXh2oih_bmnP31iKo5pV82-0cPa06J2L8k";
 
-// 🔹 Create Supabase client
+// 🔹 Supabase client
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-console.log(client);
 
-// 🔹 Form submit
-const form = document.querySelector("form");
+const loginBtn = document.getElementById("loginBtn");
 
-form &&
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const fullName = form.querySelector('input[type="text"]').value;
-    const email = form.querySelector('input[type="email"]').value;
-    const password = form.querySelectorAll('input[type="password"]')[0].value;
-    const confirmPassword = form.querySelectorAll('input[type="password"]')[1]
-      .value;
-
-    // 🔸 Validation
-    if (!fullName || !email || !password || !confirmPassword) {
-      Swal.fire({
-        icon: "warning",
-        title: "Missing Fields",
-        text: "Please fill all fields",
-      });
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      Swal.fire({
-        icon: "error",
-        title: "Password Mismatch",
-        text: "Passwords do not match",
-      });
-      return;
-    }
-
-    // 🔹 Supabase Sign Up
-    const { data, error } = await client.auth.signUp({
-      email: email,
-      password: password,
-      options: {
-        data: {
-          full_name: fullName,
-        },
-      },
-    });
-
-    if (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Signup Failed",
-        text: error.message,
-      });
-      return;
-    }
-
-    Swal.fire({
-      icon: "success",
-      title: "Account Created 🎉",
-      text: "Please check your email to confirm",
-      timer: 2000,
-      showConfirmButton: false,
-    });
-
-    setTimeout(() => {
-      window.location.href = "login.html";
-    }, 2000);
-  });
-
-// 🔹 Login Form submit
-
-form &&
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const email = form.querySelector('input[type="email"]').value;
-    const password = form.querySelector('input[type="password"]').value;
+if (loginBtn) {
+  loginBtn.addEventListener("click", async () => {
+    const email = document.querySelector('input[type="email"]').value.trim();
+    const password = document.querySelector('input[type="password"]').value.trim();
 
     if (!email || !password) {
-      Swal.fire({
+      return Swal.fire({
         icon: "warning",
         title: "Missing Fields",
         text: "Please enter email and password",
+        confirmButtonColor: "#e9a1a3",
       });
-      return;
     }
 
-    const { data, error } = await client.auth.signInWithPassword({
+    const { error } = await client.auth.signInWithPassword({
       email,
       password,
     });
 
     if (error) {
-      Swal.fire({
+      return Swal.fire({
         icon: "error",
         title: "Login Failed",
         text: error.message,
+        confirmButtonColor: "#e9a1a3",
       });
-      return;
     }
 
     Swal.fire({
       icon: "success",
       title: "Login Successful 🌸",
       text: "Welcome back!",
-      timer: 1500,
-      showConfirmButton: false,
+      confirmButtonColor: "#e9a1a3",
+    }).then(() => {
+      window.location.href = "home.html";
+    });
+  });
+}
+
+/* ======================
+   🔹 SIGNUP PAGE
+====================== */
+const signupForm = document.querySelector("form");
+
+if (signupForm) {
+  signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const fullName = signupForm.querySelector('input[type="text"]').value.trim();
+    const email = signupForm.querySelector('input[type="email"]').value.trim();
+    const passwords = signupForm.querySelectorAll('input[type="password"]');
+
+    const password = passwords[0].value.trim();
+    const confirmPassword = passwords[1].value.trim();
+
+    if (!fullName || !email || !password || !confirmPassword) {
+      return Swal.fire({
+        icon: "warning",
+        title: "Missing Fields",
+        text: "Please fill all fields",
+        confirmButtonColor: "#e9a1a3",
+      });
+    }
+
+    if (password !== confirmPassword) {
+      return Swal.fire({
+        icon: "error",
+        title: "Password Mismatch",
+        text: "Passwords do not match",
+        confirmButtonColor: "#e9a1a3",
+      });
+    }
+
+    const { error } = await client.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { full_name: fullName },
+      },
     });
 
-    setTimeout(() => {
-      window.location.href = "home.html";
-    }, 1500);
+    if (error) {
+      return Swal.fire({
+        icon: "error",
+        title: "Signup Failed",
+        text: error.message,
+        confirmButtonColor: "#e9a1a3",
+      });
+    }
+
+    Swal.fire({
+      icon: "success",
+      title: "Account Created 🎉",
+      text: "Check your email to verify",
+      confirmButtonColor: "#e9a1a3",
+    }).then(() => {
+      window.location.href = "index.html";
+    });
   });
+}
+
 
 // 🔹 Sample products (replace with Supabase fetch if needed)
 const products = [

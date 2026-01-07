@@ -1,76 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hijab App | Sign Up</title>
+<meta charset="UTF-8">
+<title>Jamila Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  .serif { font-family: 'Playfair Display', serif; }
+</style>
 </head>
 
-<body class="min-h-screen bg-gradient-to-br from-rose-900 via-purple-900 to-indigo-900 flex items-center justify-center px-4">
+<body class="min-h-screen flex">
 
-  <!-- Card -->
-  <div class="w-full max-w-md bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl p-8">
+<!-- LEFT SIDE -->
+<div class="hidden lg:flex w-1/2 bg-[#f6dede] relative items-center justify-center">
 
-    <!-- Logo / Title -->
-    <div class="text-center mb-6">
-      <img src="https://cdn-icons-png.flaticon.com/512/2922/2922561.png" 
-           alt="Hijab App" 
-           class="mx-auto h-14 mb-3">
-      <h2 class="text-2xl font-bold text-white">Create Your Account</h2>
-      <p class="text-sm text-gray-300 mt-1">Join our Hijab Community 🌸</p>
-    </div>
-
-    <!-- Form -->
-    <form class="space-y-5">
-
-      <!-- Full Name -->
-      <div>
-        <label class="block text-sm font-medium text-gray-200 mb-1">Full Name</label>
-        <input type="text" placeholder="Enter your name"
-          class="w-full rounded-lg bg-white/20 px-4 py-2 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400" />
-      </div>
-
-      <!-- Email -->
-      <div>
-        <label class="block text-sm font-medium text-gray-200 mb-1">Email Address</label>
-        <input type="email" placeholder="example@email.com"
-          class="w-full rounded-lg bg-white/20 px-4 py-2 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400" />
-      </div>
-
-      <!-- Password -->
-      <div>
-        <label class="block text-sm font-medium text-gray-200 mb-1">Password</label>
-        <input type="password" placeholder="••••••••"
-          class="w-full rounded-lg bg-white/20 px-4 py-2 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400" />
-      </div>
-
-      <!-- Confirm Password -->
-      <div>
-        <label class="block text-sm font-medium text-gray-200 mb-1">Confirm Password</label>
-        <input type="password" placeholder="••••••••"
-          class="w-full rounded-lg bg-white/20 px-4 py-2 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400" />
-      </div>
-
-      <!-- Button -->
-      <button
-        class="w-full bg-pink-500 hover:bg-pink-400 transition rounded-lg py-2.5 font-semibold text-white shadow-lg">
-        Sign Up
-      </button>
-    </form>
-
-    <!-- Footer -->
-    <p class="mt-6 text-center text-sm text-gray-300">
-      Already have an account?
-      <a href="login.html" class="text-pink-400 font-semibold hover:underline">Sign In</a>
-    </p>
+  <!-- soft pattern -->
+  <div class="absolute inset-0 opacity-30"
+       style="background-image: radial-gradient(#e7bcbc 1px, transparent 1px);
+              background-size: 18px 18px;">
   </div>
+
+  <!-- model -->
+  <img
+    src="https://templatekits.themewarrior.com/jamila/wp-content/uploads/sites/99/2024/03/login.png"
+    class="relative z-10 h-[85%] object-contain"
+  />
+
+</div>
+
+<!-- RIGHT SIDE -->
+<div class="w-full lg:w-1/2 flex items-center justify-center bg-white">
+
+<div class="w-[380px]">
+
+  <!-- logo -->
+  <div class="flex items-center justify-center mb-14">
+
+  <img src="https://templatekits.themewarrior.com/jamila/wp-content/uploads/sites/99/2024/02/logo-jamila.png" alt="">
+  </div>
+
+  <p class="text-center text-[11px] tracking-[0.3em] text-pink-400 mb-3">LOGIN</p>
+
+  <h2 class="serif text-4xl text-center font-semibold mb-3">
+    Welcome Back!
+  </h2>
+
+  <p class="text-center text-gray-400 text-sm mb-10">
+    Please enter your details
+  </p>
+
+  <!-- inputs -->
+  <input
+    type="email"
+    placeholder="Email address"
+    class="w-full bg-gray-100 py-3 px-4 mb-4 text-sm focus:outline-none"
+  >
+
+  <input
+    type="password"
+    placeholder="Password"
+    class="w-full bg-gray-100 py-3 px-4 mb-6 text-sm focus:outline-none"
+  >
+
+  <!-- remember -->
+  <div class="flex items-center mb-8 text-sm text-gray-500">
+    <input type="checkbox" class="mr-2 accent-pink-300">
+    Remember Me
+  </div>
+
+  <!-- button -->
+  <button id="loginBtn"
+    class="w-full bg-[#e9a3a3] hover:bg-[#e58c8c] text-white py-3 rounded-full tracking-widest text-sm transition">
+    LOG IN
+  </button>
+
+<p class="text-center text-sm text-gray-500 mt-8">
+  Don’t have an account?
+  <a href="signup.html" class="text-pink-400 hover:underline font-medium">
+    Sign Up
+  </a>
+</p>
+
+  <p class="text-center text-sm text-pink-400 mt-8 hover:underline cursor-pointer">
+    Lost your password?
+  </p>
+
+</div>
+</div>
   
+<!-- Add this in head for icons -->
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="app.js"></script>
+
 
 </body>
 </html>

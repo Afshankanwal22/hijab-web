@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hijab App | Login</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body">
+
+  <!-- SIGNUP SECTION -->
+<section class="bg-[#f6efed] py-20">
+  <div class="max-w-7xl mx-auto px-6 flex justify-center">
+
+    <div class="bg-white w-full max-w-xl p-12 shadow-sm">
+      
+      <!-- Heading -->
+      <p class="text-center text-[12px] tracking-[0.3em] text-[#e9a1a3] mb-3 font-poppins">
+        SIGN UP
+      </p>
+
+      <h2 class="text-center text-4xl font-playfair font-semibold mb-3">
+        Create Account
+      </h2>
+
+      <p class="text-center text-gray-400 text-sm mb-10 font-poppins">
+        Please fill in the information below
+      </p>
+
+      <!-- Form -->
+      <form class="space-y-5 font-poppins">
+
+        <input
+          type="text"
+          placeholder="Full Name"
+          class="w-full bg-gray-100 px-4 py-3 text-sm focus:outline-none"
+        />
+
+        <input
+          type="email"
+          placeholder="Email Address"
+          class="w-full bg-gray-100 px-4 py-3 text-sm focus:outline-none"
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          class="w-full bg-gray-100 px-4 py-3 text-sm focus:outline-none"
+        />
+
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          class="w-full bg-gray-100 px-4 py-3 text-sm focus:outline-none"
+        />
+
+        <!-- Terms -->
+        <div class="flex items-center gap-2 text-sm text-gray-500">
+          <input type="checkbox" class="accent-[#e9a1a3]">
+          <span>I agree to the Terms & Conditions</span>
+        </div>
+
+        <!-- Button -->
+        <button
+          type="submit"
+          class="w-full bg-[#e9a1a3] hover:bg-[#e58c8c] text-white py-3 rounded-full tracking-widest text-sm transition">
+          CREATE ACCOUNT
+        </button>
+
+      </form>
+
+      <!-- Login link -->
+      <p class="text-center text-sm text-gray-500 mt-8 font-poppins">
+        Already have an account?
+        <a href="index.html" class="text-[#e9a1a3] hover:underline">Login</a>
+      </p>
+
+    </div>
+
+  </div>
+</section>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
