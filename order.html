@@ -2,35 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Checkout</title>
+  <title>Order Status</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-gradient-to-br from-gray-100 to-gray-200 font-sans min-h-screen flex items-center justify-center">
 
-<body class="bg-gradient-to-br from-rose-50 to-gray-100 font-sans min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-4xl bg-white rounded-3xl shadow-2xl p-10">
 
-  <div class="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-10">
-
-   <h2 class="text-2xl font-semibold">Order Status</h2>
-
-<ul class="mt-6 space-y-3">
-  <li>✅ Order Confirmed</li>
-  <li>📦 Preparing</li>
-  <li>🚚 Out for Delivery</li>
-  <li>🏠 Delivered</li>
-</ul>
+    <!-- Header -->
+    <div class="flex flex-col items-center mb-8">
+      <h2 class="text-3xl font-bold text-gray-800 mb-2">Your Order</h2>
+      <p class="text-gray-500">Order #<span class="font-medium text-gray-700">123456</span></p>
     </div>
-    
 
+    <!-- Progress Tracker -->
+    <div class="relative">
+      <div class="absolute top-4 left-0 w-full h-1 bg-gray-300 rounded-full"></div>
+      <div class="absolute top-4 left-0 h-1 bg-green-500 rounded-full transition-all duration-500" style="width: 50%;"></div>
 
+      <ul class="flex justify-between relative z-10">
+        <li class="flex flex-col items-center text-gray-700">
+          <div class="w-10 h-10 flex items-center justify-center rounded-full bg-green-500 text-white font-bold">1</div>
+          <span class="mt-2 text-sm">Confirmed</span>
+        </li>
+        <li class="flex flex-col items-center text-gray-700">
+          <div class="w-10 h-10 flex items-center justify-center rounded-full bg-green-500 text-white font-bold">2</div>
+          <span class="mt-2 text-sm">Preparing</span>
+        </li>
+        <li class="flex flex-col items-center text-gray-400">
+          <div class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-300 text-gray-600 font-bold">3</div>
+          <span class="mt-2 text-sm">Out for Delivery</span>
+        </li>
+        <li class="flex flex-col items-center text-gray-400">
+          <div class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-300 text-gray-600 font-bold">4</div>
+          <span class="mt-2 text-sm">Delivered</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="mt-10 bg-gray-50 rounded-xl p-6 shadow-inner">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Order Summary</h3>
+      <div class="grid grid-cols-3 gap-4 text-gray-700">
+        <div>
+          <p class="font-medium">Product</p>
+          <p>Cape Town Garden Hijab</p>
+        </div>
+        <div>
+          <p class="font-medium">Quantity</p>
+          <p>1</p>
+        </div>
+        <div>
+          <p class="font-medium">Price</p>
+          <p>$23.00</p>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center mt-6 border-t border-gray-200 pt-4 font-semibold text-gray-800">
+        <span>Total</span>
+        <span>$23.00</span>
+      </div>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="mt-8 text-gray-600 text-center text-sm">
+      <p>For inquiries, contact <a href="mailto:support@ecommerce.com" class="text-blue-500 underline">support@ecommerce.com</a></p>
+    </div>
+
+  </div>
 
   <!-- SweetAlert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
   <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
   <!-- App JS -->
   <script src="app.js"></script>
-
 </body>
 </html>
