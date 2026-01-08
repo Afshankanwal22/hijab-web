@@ -7,13 +7,17 @@
 </head>
 <body class="bg-white font-sans">
 
+
+<!-- ================= PRODUCT SECTION ================= -->
 <div class="max-w-6xl mx-auto px-6 py-16">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
     <!-- Product Image -->
     <div class="relative">
-      <img src="" alt="Product Image" class="rounded-md w-full object-cover" />
-      <button class="absolute top-4 right-4 bg-white p-2 rounded-full shadow">
+      <img src="" alt="Product Image"
+        class="rounded-md w-full object-cover" />
+      <button
+        class="absolute top-4 right-4 bg-white p-2 rounded-full shadow">
         🔍
       </button>
     </div>
@@ -39,33 +43,83 @@
 
       <!-- Add to Cart -->
       <div class="flex items-center gap-4 mb-8">
-        <input type="number" value="1" class="w-16 h-12 border rounded-md text-center" />
-        <button class="bg-rose-300 hover:bg-rose-400 transition text-white px-12 h-12 rounded-full uppercase tracking-wide">
+        <input type="number" value="1"
+          class="w-16 h-12 border rounded-md text-center" />
+        <button
+          class="bg-rose-300 hover:bg-rose-400 transition text-white px-12 h-12 rounded-full uppercase tracking-wide">
           Add to Cart
         </button>
       </div>
 
-      <!-- Meta Info -->
+      <!-- Meta -->
       <div class="text-sm text-gray-700 space-y-2">
         <p><span class="font-semibold">SKU:</span> <span class="sku"></span></p>
         <p><span class="font-semibold">Category:</span> <span class="category"></span></p>
         <p><span class="font-semibold">Tag:</span> <span class="tag"></span></p>
       </div>
-
     </div>
   </div>
 
   <!-- Tabs -->
   <div class="mt-20 border-t pt-10">
-    <div class="flex gap-8 uppercase text-sm tracking-wide">
-      <button class="border-b-2 border-rose-300 pb-2 text-rose-400">Description</button>
+    <div class="flex gap-8 uppercase text-sm tracking-wide mb-6">
+      <button class="border-b-2 border-rose-300 pb-2 text-rose-400">
+        Description
+      </button>
       <button class="text-gray-500">Reviews (1)</button>
     </div>
-   
-    <h2>Description</h2>
-    <p class="tab-description"></p>
+
+    <p class="tab-description text-gray-600 leading-relaxed"></p>
   </div>
-  
+</div>
+
+<!-- ================= SIDE CART DRAWER ================= -->
+
+<!-- Overlay -->
+<div id="cartOverlay"
+  class="fixed inset-0 bg-black/40 hidden z-40"></div>
+
+<!-- Drawer -->
+<div id="cartDrawer"
+  class="fixed top-0 right-0 h-full w-[380px] bg-white z-50 translate-x-full transition-transform duration-300 shadow-2xl">
+
+  <!-- Header -->
+  <div class="p-5 flex justify-between items-center border-b">
+    <h2 class="text-lg font-semibold">Your Cart</h2>
+    <button id="closeCart"
+      class="text-xl hover:opacity-60">✕</button>
+  </div>
+
+  <!-- Content -->
+  <div class="p-5 space-y-6">
+    <img id="cartImg"
+      class="w-full h-56 object-cover rounded-lg" />
+
+    <h3 id="cartTitle"
+      class="font-medium text-lg"></h3>
+
+    <!-- Quantity -->
+    <div class="flex items-center justify-between">
+      <span class="text-gray-500">Quantity</span>
+      <div class="flex items-center border rounded-full px-3 py-1">
+        <button id="minusQty" class="px-2 text-xl">−</button>
+        <span id="qtyValue" class="px-4">1</span>
+        <button id="plusQty" class="px-2 text-xl">+</button>
+      </div>
+    </div>
+
+    <!-- Total -->
+    <div class="flex justify-between text-lg font-semibold">
+      <span>Total</span>
+      <span id="totalPrice">$0</span>
+    </div>
+
+    <!-- Confirm -->
+    <button id="confirmAdd"
+      class="w-full bg-rose-300 hover:bg-rose-400 transition text-white py-3 rounded-full uppercase tracking-wide">
+      Add to Cart
+    </button>
+  </div>
 </div>
 
 

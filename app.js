@@ -266,12 +266,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (error) {
       Swal.fire("Error", error.message, "error");
     } else {
-      Swal.fire({
-        icon: "success",
-        title: "Added to Cart 🛒",
-        timer: 1200,
-        showConfirmButton: false,
-      });
+      // Swal.fire({
+      //   icon: "success",
+      //   title: "Added to Cart 🛒",
+      //   timer: 1200,
+      //   showConfirmButton: false,
+      // });
     }
   });
 });
@@ -279,7 +279,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 /***********************/
 document.addEventListener("DOMContentLoaded", async () => {
   const addBtn = document.querySelector("button.bg-rose-300");
-  if (!addBtn) return; // not product page
+  if (!addBtn) return; 
 
   const urlParams = new URLSearchParams(window.location.search);
   const productId = urlParams.get("id");
@@ -313,38 +313,35 @@ document.addEventListener("DOMContentLoaded", async () => {
       },
     ]);
 
-    if (error) {
-      Swal.fire("Error", error.message, "error");
-      return;
-    }
+    // if (error) {
+      // Swal.fire("Error", error.message, "error");
+      // return;
+    // }
 
-    Swal.fire("Added", "Item added to cart", "success");
-    setTimeout(() => (window.location.href = "checkout.html"), 1200);
+    // Swal.fire("Added", "Item added to cart", "success");
+   ;
   });
 });
 
 /***********************
   CHECKOUT PAGE
 ************************/
+
 document.addEventListener("DOMContentLoaded", async () => {
   const nameEl = document.getElementById("productName");
-  if (!nameEl) return; // not checkout page
-
   const priceEl = document.getElementById("productPrice");
   const qtyEl = document.getElementById("productQty");
   const totalEl = document.getElementById("productTotal");
   const confirmBtn = document.getElementById("confirmOrder");
 
   // 🔐 Login check
-  const {
-    data: { user },
-  } = await client.auth.getUser();
+  const { data: { user } } = await client.auth.getUser();
   if (!user) {
     window.location.href = "login.html";
     return;
   }
 
-  // 🛒 Cart fetch
+  // 🛒 Fetch cart items for user
   const { data: cart, error } = await client
     .from("AddToCard")
     .select("*")
@@ -352,55 +349,80 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (error || !cart.length) {
     Swal.fire("Empty Cart", "No items found", "warning");
+    nameEl.innerText = "-";
+    priceEl.innerText = "-";
+    qtyEl.innerText = "-";
+    totalEl.innerText = "-";
     return;
   }
 
-  // 👉 For now first item
-  const item = cart[0];
-  const total = item.price * item.quantity;
+  // ✅ Prepare display
+  let totalQty = 0;
+  let totalPrice = 0;
 
-  // 🖥️ UI Fill
-  nameEl.innerText = item.product_name;
-  priceEl.innerText = "Rs " + item.price;
-  qtyEl.innerText = item.quantity;
-  totalEl.innerText = "Rs " + total;
+  // Create unique list of products with aggregated quantities
+  const aggregated = {};
 
-  // ✅ CONFIRM ORDER
-  confirmBtn.addEventListener("click", async () => {
+  cart.forEach(item => {
+    if (aggregated[item.product_id]) {
+      aggregated[item.product_id].quantity += item.quantity;
+    } else {
+      aggregated[item.product_id] = {
+        name: item.product_name,
+        price: item.price,
+        quantity: item.quantity
+      };
+    }
+    totalQty += item.quantity;
+    totalPrice += item.price * item.quantity;
+  });
+
+  // Display products nicely
+  const productList = Object.values(aggregated)
+    .map(p => `${p.name} x${p.quantity}`)
+    .join(", ");
+
+  nameEl.innerText = productList;
+  priceEl.innerText = "Rs " + totalPrice;
+  qtyEl.innerText = totalQty;
+  totalEl.innerText = "Rs " + totalPrice;
+
+  // ✅ Confirm Order
+  confirmBtn.onclick = async () => {
     const deliveryMinutes = Math.floor(Math.random() * 30) + 20;
 
-    // 📦 Insert into Orders (ADMIN WILL SEE THIS)
-    const { error: orderError } = await client.from("order").insert([
-      {
-        user_id: user.id,
-        product_id: item.product_id,
-        product_name: item.product_name,
-        price: item.price,
-        quantity: item.quantity,
-        total: total,
-        status: "Pending",
-        delivery_time: `${deliveryMinutes} minutes`,
-      },
-    ]);
+    const orderData = Object.values(aggregated).map(p => ({
+      user_id: user.id,
+      product_name: p.name,
+      quantity: p.quantity,
+      total: p.price * p.quantity,
+      status: "Pending",
+      delivery_time: `${deliveryMinutes} minutes`,
+    }));
+
+    // Insert into 'order' table
+    const { error: orderError } = await client.from("order").insert(orderData);
 
     if (orderError) {
       Swal.fire("Order Failed", orderError.message, "error");
       return;
     }
 
-    // 🗑️ Clear cart
+    // Clear cart
     await client.from("AddToCard").delete().eq("user_id", user.id);
 
     Swal.fire({
       icon: "success",
       title: "Order Placed 🎉",
-      html: `
-        <p>Your order has been placed.</p>
-        <p class="mt-2"><b>Estimated Delivery:</b> ${deliveryMinutes} minutes</p>
-      `,
+      html: `<p>Your order has been placed.</p>
+             <p class="mt-2"><b>Estimated Delivery:</b> ${deliveryMinutes} minutes</p>`,
+    }).then(() => {
+      window.location.href = "order.html";
     });
-  });
+  };
 });
+
+
 document.addEventListener("DOMContentLoaded", async () => {
   const table = document.getElementById("ordersTable");
   if (!table) return;
@@ -609,8 +631,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ================== IMAGE UPLOAD ==================
-    // async function uploadImage(file) {
-    // if (!file) return null;
+  
     const file = imageFile;
     const fileName = `${Date.now()}-${file.name}`;
     const { data, error: uploadErr } = await client.storage
@@ -658,4 +679,103 @@ document.addEventListener("DOMContentLoaded", () => {
     form.reset();
     loadProducts();
   });
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get("id");
+  if (!productId) return;
+
+  const product = products.find((p) => p.id === productId);
+  if (!product) return;
+
+  // ==== populate page ====
+  document.querySelector("h1").innerText = product.name;
+  document.querySelector("img").src = product.image;
+  document.querySelector(".text-gray-400").innerText = "$" + product.oldPrice;
+  document.querySelector(".text-2xl").innerText = "$" + product.price;
+  document.querySelector("p.mb-8").innerText = product.description;
+  document.querySelector(".sku").innerText = product.id;
+  document.querySelector(".category").innerText = product.category;
+  document.querySelector(".tag").innerText = product.tag;
+  document.querySelector(".tab-description").innerText = product.description;
+
+  // ==== drawer elements ====
+  const addBtn = document.querySelector("button.bg-rose-300");
+  const drawer = document.getElementById("cartDrawer");
+  const overlay = document.getElementById("cartOverlay");
+
+  const cartImg = document.getElementById("cartImg");
+  const cartTitle = document.getElementById("cartTitle");
+  const qtyValue = document.getElementById("qtyValue");
+  const totalPrice = document.getElementById("totalPrice");
+
+  let qty = 1;
+
+  // ==== open drawer ====
+  addBtn.addEventListener("click", () => {
+    qty = 1;
+    cartImg.src = product.image;
+    cartTitle.innerText = product.name;
+    qtyValue.innerText = qty;
+    totalPrice.innerText = "$" + product.price;
+
+    drawer.classList.remove("translate-x-full");
+    overlay.classList.remove("hidden");
+  });
+
+  // ==== close ====
+  document.getElementById("closeCart").onclick = closeCart;
+  overlay.onclick = closeCart;
+
+  function closeCart() {
+    drawer.classList.add("translate-x-full");
+    overlay.classList.add("hidden");
+  }
+
+  // ==== quantity ====
+  document.getElementById("plusQty").onclick = () => {
+    qty++;
+    qtyValue.innerText = qty;
+    totalPrice.innerText = "$" + qty * product.price;
+  };
+
+  document.getElementById("minusQty").onclick = () => {
+    if (qty > 1) qty--;
+    qtyValue.innerText = qty;
+    totalPrice.innerText = "$" + qty * product.price;
+  };
+
+  // ==== confirm add ====
+  document.getElementById("confirmAdd").onclick = async () => {
+    const { data: { user } } = await client.auth.getUser();
+
+    if (!user) {
+      Swal.fire("Login Required", "Please login first", "warning");
+      return;
+    }
+
+    const { error } = await client.from("AddToCard").insert([
+      {
+        user_id: user.id,
+        product_id: product.id,
+        product_name: product.name,
+        price: product.price,
+        quantity: qty,
+      },
+    ]);
+
+    if (error) {
+      Swal.fire("Error", error.message, "error");
+      return;
+    }
+
+    closeCart();
+    Swal.fire({
+      icon: "success",
+      title: "Added to Cart 🛒",
+      timer: 1200,
+      showConfirmButton: false,
+    });
+     setTimeout(() => (window.location.href = "checkout.html"), 1200)
+  };
 });
