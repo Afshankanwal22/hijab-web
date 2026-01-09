@@ -9,6 +9,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 
   <!-- Custom font feel -->
   <style>
@@ -600,10 +602,12 @@
   </div>
 
   <!-- Cards -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
 
     <!-- Card 1 -->
-    <div class="bg-[#fbf1ea] p-8 relative">
+    <div class="bg-[#fbf1ea] p-8 relative"  data-aos="fade-down"
+     data-aos-easing="linear"
+     data-aos-duration="1800">
       <h3 class="font-playfair text-2xl mb-4">
         I absolutely love shopping at this hijab store!
       </h3>
@@ -624,7 +628,9 @@
     </div>
 
     <!-- Card 2 -->
-    <div class="bg-[#fbf1ea] p-8 relative">
+    <div class="bg-[#fbf1ea] p-8 relative"  data-aos="fade-down"
+     data-aos-easing="linear"
+     data-aos-duration="1500">
       <h3 class="font-playfair text-2xl mb-4">
         I absolutely love shopping at this hijab store!
       </h3>
@@ -645,7 +651,9 @@
     </div>
 
     <!-- Card 3 -->
-    <div class="bg-[#fbf1ea] p-8 relative">
+    <div class="bg-[#fbf1ea] p-8 relative"  data-aos="fade-down"
+     data-aos-easing="linear"
+     data-aos-duration="1500">
       <h3 class="font-playfair text-2xl mb-4">
         I absolutely love shopping at this hijab store!
       </h3>
@@ -776,7 +784,9 @@
 
 
 <!-- Footer Start -->
-<footer class="bg-black text-gray-200 pt-20 pb-10">
+<footer class="bg-black text-gray-200 pt-20 pb-10" data-aos="fade-down"
+     data-aos-easing="linear"
+     data-aos-duration="1500">
   <div class="max-w-7xl mx-auto px-6">
 
     <!-- Top Section: Newsletter -->
@@ -875,6 +885,15 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="app.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1500,
+    easing: "ease-in-out-cubic",
+    once: true,
+    offset: 120
+  });
+</script>
 
 
 
